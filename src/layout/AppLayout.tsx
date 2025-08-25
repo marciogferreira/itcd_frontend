@@ -1,20 +1,12 @@
 import { SidebarProvider, useSidebar } from "../context/SidebarContext";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet } from "react-router";
 import AppHeader from "./AppHeader";
 import Backdrop from "./Backdrop";
 import AppSidebar from "./AppSidebar";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 
 
 const LayoutContent: React.FC = () => {
   const { isExpanded, isHovered, isMobileOpen } = useSidebar();
-  const { isLogged } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  if(!isLogged) {
-    // return navigate('/signin')
-  }
 
   return (
     <div className="min-h-screen xl:flex">

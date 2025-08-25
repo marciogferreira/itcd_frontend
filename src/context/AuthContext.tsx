@@ -1,10 +1,29 @@
-import { createContext, ReactElement, useEffect, useState } from "react";
+import { createContext, ReactElement, useContext, useEffect, useState } from "react";
 
 type PropsData = {
    children: ReactElement 
 }
 
-export const AuthContext = createContext({});
+type PropsValuesData = {
+   isLogged: boolean,
+   setIsLogged: (value: boolean) => void,
+   user: null | {}, 
+   setUser: (value: any) => void,
+   loading: boolean,
+   setLoading: (value: boolean) => void,
+   handleLogin: () => void,
+   handleLogout: () => void,
+}
+
+export const AuthContext = createContext<PropsValuesData>({} as PropsValuesData);
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth deve ser usado dentro de AuthProvider");
+  }
+  return context;
+};
 
 export default function AuthProvider({ children }: PropsData) {
 
@@ -31,7 +50,7 @@ export default function AuthProvider({ children }: PropsData) {
     }, []);
     
     return (
-        <AuthContext.Provider value={{ isLogged, setIsLogged, user, setUser, loading, setLoading, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ isLogged, setIsLogged, user, setUser, loading, setLoading, handleLogin, handleLogout } as PropsValuesData}>
             {children}
         </AuthContext.Provider>
     )

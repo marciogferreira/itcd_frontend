@@ -5,10 +5,34 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import { Formik, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { useAuth } from "../../context/AuthContext";
+import Api from "../../config/Api";
+import Message from "../../config/Message";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const { setLoading, signIn } = useAuth()
+  
+  async function handleLogin(values: any) {
+    console.log(values)
+
+     try {
+      setLoading(true)
+      const response = await Api.post('login', {
+        email: values.login,
+        password: values.senha
+      });
+      Message.success(response.data.message)
+      signIn(response.data.token);
+      
+    } catch(e) {
+    } finally {
+      setLoading(false)
+    }
+  }
   
   return (
     <div className="flex flex-col flex-1">
@@ -84,56 +108,86 @@ export default function SignInForm() {
                 </span>
               </div>
             </div>
-            <form>
-              <div className="space-y-6">
-                <div>
-                  <Label>
-                    Email/CPF <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <Input placeholder="000.000.000-00" />
-                </div>
-                <div>
-                  <Label>
-                    Senha <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Entre com a senha"
+            <Formik
+              initialValues={{
+                login: '',
+                senha: ''
+              }}
+              validationSchema={Yup.object().shape({
+                login: Yup.string()
+                  .required('Campo obrigatório.'),
+                senha: Yup.string()
+                  .min(6, 'A senha deve ter pelo menos 6 caracteres.')
+                  .required('A senha é obrigatória.'),
+              })}
+              onSubmit={(values: any) => {
+                handleLogin(values)
+              }}
+            >
+              {({ handleSubmit }) => (
+                <div className="space-y-6">
+                  
+                  <div>
+                    <Label>
+                      Email/CPF <span className="text-error-500">*</span>{" "}
+                    </Label>
+                    <Input 
+                      id="login" 
+                      name="login"
+                      placeholder="000.000.000-00" 
                     />
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
+                    <span className="text-red-600">
+                      <ErrorMessage name="login" />
+                    </span>
+                  </div>
+                  <div>
+                    <Label>
+                      Senha <span className="text-error-500">*</span>{" "}
+                    </Label>
+                    <div className="relative">
+                      <Input 
+                        id="senha" 
+                        name="senha"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Entre com a senha"
+                      />
+                      <span className="text-red-600">
+                        <ErrorMessage name="senha" />
+                      </span>
+                      <span
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
+                      >
+                        {showPassword ? (
+                          <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        ) : (
+                          <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Checkbox checked={isChecked} onChange={setIsChecked} />
+                      <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
+                      Continuar conectado
+                      </span>
+                    </div>
+                    <Link
+                      to="/reset-password"
+                      className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                     >
-                      {showPassword ? (
-                        <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      )}
-                    </span>
+                      Esqueceu sua senha?
+                    </Link>
+                  </div>
+                  <div>
+                    <Button onClick={handleSubmit} className="w-full" size="sm">
+                      Acessar
+                    </Button>
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Checkbox checked={isChecked} onChange={setIsChecked} />
-                    <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
-                     Continuar conectado
-                    </span>
-                  </div>
-                  <Link
-                    to="/reset-password"
-                    className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                  >
-                    Esqueceu sua senha?
-                  </Link>
-                </div>
-                <div>
-                  <Button className="w-full" size="sm">
-                    Acessar
-                  </Button>
-                </div>
-              </div>
-            </form>
+              )}
+            </Formik>
 
             <div className="mt-5">
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">

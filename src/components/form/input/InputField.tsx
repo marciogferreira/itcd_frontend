@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import type React from "react";
 import type { FC } from "react";
 
@@ -16,6 +17,7 @@ interface InputProps {
   success?: boolean;
   error?: boolean;
   hint?: string;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: FC<InputProps> = ({
@@ -24,7 +26,6 @@ const Input: FC<InputProps> = ({
   name,
   placeholder,
   value,
-  onChange,
   className = "",
   min,
   max,
@@ -48,18 +49,19 @@ const Input: FC<InputProps> = ({
 
   return (
     <div className="relative">
-      <input
+      <Field
         type={type}
         id={id}
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        // onChange={onChange}
         min={min}
         max={max}
         step={step}
         disabled={disabled}
         className={inputClasses}
+        // onChange={handleChange}
       />
 
       {hint && (

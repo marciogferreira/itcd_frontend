@@ -19,9 +19,10 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import { useAuth } from "./context/AuthContext";
-
+import AlunosPages from "./pages/AlunosPages";
 
 export default function App() {
+  
   const { isLogged } = useAuth()
 
   if(!isLogged) {
@@ -51,8 +52,10 @@ export default function App() {
 
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
+
             <Route index path="/" element={<Home />} />
 
+            <Route path="/alunos" element={<AlunosPages />} />
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />
@@ -75,9 +78,8 @@ export default function App() {
             {/* Charts */}
             <Route path="/line-chart" element={<LineChart />} />
             <Route path="/bar-chart" element={<BarChart />} />
-          </Route>
 
-         
+          </Route>
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

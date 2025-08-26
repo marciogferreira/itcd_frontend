@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Link } from "react-router";
 
 export default function NotificationDropdown() {
@@ -54,7 +53,7 @@ export default function NotificationDropdown() {
       >
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-gray-100 dark:border-gray-700">
           <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            Notification
+            Notificações
           </h5>
           <button
             onClick={toggleDropdown}
@@ -76,8 +75,7 @@ export default function NotificationDropdown() {
             </svg>
           </button>
         </div>
-        <ul className="flex flex-col h-auto overflow-y-auto custom-scrollbar">
-          {/* Example notification items */}
+        {/* <ul className="flex flex-col h-auto overflow-y-auto custom-scrollbar">
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
@@ -366,13 +364,13 @@ export default function NotificationDropdown() {
               </span>
             </DropdownItem>
           </li>
-          {/* Add more items as needed */}
-        </ul>
+          
+        </ul> */}
         <Link
           to="/"
           className="block px-4 py-2 mt-3 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
         >
-          View All Notifications
+          Ver todas as notificações
         </Link>
       </Dropdown>
     </div>

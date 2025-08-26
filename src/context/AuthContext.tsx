@@ -34,15 +34,13 @@ export default function AuthProvider({ children }: PropsData) {
     const [user, setUser] = useState(null);
 
     function signIn(token: string) {
-        setIsLogged(false);
+        setIsLogged(true);
         Util.setToken(token)
-        location.href = '/';
     }
 
     function signOut() {
         setIsLogged(false);
-        localStorage.removeItem('sis@itcd_portal');
-        location.href = '/';
+        Util.removeToken()
     }
 
     async function getMe() {
@@ -51,7 +49,7 @@ export default function AuthProvider({ children }: PropsData) {
     }
 
     useEffect(() => {
-        if(localStorage.getItem('sis@itcd_portal')) {
+        if(Util.getToken()) {
             getMe();
             setIsLogged(true);
         }

@@ -2,18 +2,6 @@ import * as yup from 'yup';
 import { Formik, Field, ErrorMessage } from 'formik';
 import FormButtons from '../FormButtons';
 
-// type DataProps = {
-//     emptyObject: object,
-//     handleSubmit: (data: object) => void,
-//     handleCancel: () => void,
-//     validation: any,
-//     FormWrapper: React.ElementType | null,
-//     enableBtns: boolean,
-//     enableBtnTop: boolean,
-//     view: string,
-//     loadFile: (file: File) => void,
-// }
-
 function Form(props: any){
     return (
         <Formik

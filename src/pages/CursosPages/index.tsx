@@ -134,10 +134,10 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     );
 }
 
-export default function AlunosPages() {
+export default function CursosPages() {
     return (
         <Crud
-            title="Alunos"
+            title="Cursos"
             endPoint="alunos"
             searchFieldName='search'
             emptyObject={{

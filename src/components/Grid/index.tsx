@@ -1,7 +1,7 @@
 import {
   Table,
   TableBody,
-//   TableCell,
+  TableCell,
   TableHeader,
   TableRow,
 } from "../ui/table";
@@ -26,7 +26,7 @@ export default function Grid(props: DataProps) {
     const FieldsHtml = props.fieldsHtml;
 
     return (
-        <Table className="table-auto md:table-fixed border-collapse">
+        <Table className="table-auto border-separate  border-spacing-2">
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
                 <TableRow>
                     {props.fields.map((item, index) => (
@@ -43,19 +43,21 @@ export default function Grid(props: DataProps) {
             </TableHeader>
             <TableBody>
                 {props.list && props.list.map((item) => (
-                    <TableRow key={item.id}>
+                    <TableRow key={item.id} className="bg-gray-100 even:bg-white">
                         {props.fieldsHtml && <FieldsHtml {...props} item={item}  />}
                         {!props.fieldsHtml && 
                             <>
                                 {props.fields.map(i => (
-                                    <td className={ i.classBody || ''}>{item[i.name]}</td>
+                                    <TableCell className={ i.classBody || ''}>{item[i.name]}</TableCell>
                                 ))}
                             </>
                         }
                         {!props.enableBtnEdit && !props.enableBtnEdit &&
-                            <td style={{ width: '12%' }}>
+                            <td style={{ width: '12%' }} className="p-1">
                                 {!props.enableBtnEdit && 
-                                    <button onClick={() => {
+                                    <button 
+                                        className="bg-gray-200 text-blue-900 p-2 rounded-md"
+                                        onClick={() => {
                                         if(props.handleCustomEdit) {
                                             props.handleCustomEdit(item)
                                         } else {
@@ -67,7 +69,7 @@ export default function Grid(props: DataProps) {
                                 }
                                 &nbsp;
                                 {!props.enableBtnDelete && 
-                                    <button  onClick={() => props.handleDelete(item)}>
+                                    <button className="bg-gray-200 text-red-700 p-2 rounded-md" onClick={() => props.handleDelete(item)}>
                                         Excluir
                                     </button>
                                 }

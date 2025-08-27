@@ -20,6 +20,7 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import { useAuth } from "./context/AuthContext";
 import AlunosPages from "./pages/AlunosPages";
+import CursosPages from "./pages/CursosPages";
 
 export default function App() {
   
@@ -56,6 +57,8 @@ export default function App() {
             <Route index path="/" element={<Home />} />
 
             <Route path="/alunos" element={<AlunosPages />} />
+            <Route path="/cursos" element={<CursosPages />} />
+            
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />

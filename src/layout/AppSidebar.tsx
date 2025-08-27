@@ -43,6 +43,18 @@ const navItems: NavItem[] = [
     name: "Cursos",
     path: "/cursos",
   },
+
+    {
+    icon: <CalenderIcon />,
+    name: "Eventos Certificação",
+    path: "/eventos_certificacao",
+  },
+
+    {
+    icon: <CalenderIcon />,
+    name: "Alunos Eventos",
+    path: "/alunos_eventos",
+  },
   
   {
     icon: <UserCircleIcon />,

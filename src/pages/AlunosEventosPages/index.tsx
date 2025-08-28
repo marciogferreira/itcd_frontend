@@ -1,7 +1,8 @@
 import Crud from '../../components/Crud';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Api from '../../config/Api';
+import SelectInputs from '../../components/form/form-elements/SelectInputs';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -11,22 +12,44 @@ type DataProps = {
 }
 
 const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
+    
+    const [alunos, setAlunos] = useState([]);
+
+    async function getAlunos() {
+        const response = await Api.get('alunos/options')
+        setAlunos(response.data.data)
+    }
+
+    useEffect(() => {
+        getAlunos()
+    }, []);
+
+    const [evento, setEvento] = useState([]);
+
+    async function getEvento() {
+        const response = await Api.get('eventos-certificacoes/options')
+        setEvento(response.data.data)
+    }
+
+    useEffect(() => {
+        getEvento()
+    }, []);
+
     return (
         <>
             <div className='row'>
+
                 <div className='mb-3'>
-                    <Label>Nome do Aluno</Label>
-                    <Input type="text" id="nome_aluno" name="nome_aluno" />
+                    <SelectInputs options={alunos} label="Aluno" name="aluno_id" id="aluno_id" />
                     <span className="error">
-                        <ErrorMessage name="nome_aluno" component="span" />
+                        <ErrorMessage name="aluno_id" component="span" />
                     </span>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-4">
 
                     <div className='mb-3'>
-                        <Label>Evento</Label>
-                        <Input type="text" id="evento" name="evento" />
+                        <SelectInputs options={evento} label="Evento" name="evento_id" id="evento_id" />
                         <span className="error">
                             <ErrorMessage name="evento" component="span" />
                         </span>
@@ -68,13 +91,13 @@ export default function AlunosEventosPages() {
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'aluno_id', label: 'Aluno' },
-                { name: 'Evento_id', label: 'Evento' },
+                { name: 'evento_id', label: 'Evento' },
                 { name: 'status_entrega', label: 'Status Entrega' }
             ]}
             validation={(Yup: object | any) => {
                 return {
                     aluno_id: Yup.string().required('Campo obrigatório'),
-                    Evento_id: Yup.string().required('Campo obrigatório'),
+                    evento_id: Yup.string().required('Campo obrigatório'),
                     status_entrega:  Yup.string().required('Campo obrigatório'),
                 };
             } }

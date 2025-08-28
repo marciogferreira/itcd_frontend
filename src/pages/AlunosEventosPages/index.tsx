@@ -56,7 +56,7 @@ export default function AlunosEventosPages() {
     return (
         <Crud
             title="Alunos Eventos"
-            endPoint="alunos_eventos"
+            endPoint="alunos-eventos"
             searchFieldName='search'
             emptyObject={{
                 aluno_id: '',

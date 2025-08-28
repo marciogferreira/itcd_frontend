@@ -79,7 +79,7 @@ export default function EventosCertificacoesPages() {
     return (
         <Crud
             title="Eventos Certificacao"
-            endPoint="eventos_certificacao"
+            endPoint="eventos-certificacoes"
             searchFieldName='search'
             emptyObject={{
                 nome_evento: '',

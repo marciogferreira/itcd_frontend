@@ -85,11 +85,11 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     );
 }
 
-export default function CursosPages() {
+export default function MatriculasPages() {
     return (
         <Crud
-            title="Cursos"
-            endPoint="cursos"
+            title="Matrículas"
+            endPoint="matriculas"
             searchFieldName='search'
             emptyObject={{
                 nome_curso: '',

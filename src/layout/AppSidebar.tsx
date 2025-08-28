@@ -28,57 +28,97 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
+  
   {
     icon: <GridIcon />,
     name: "Painel",
     path: "/",
   },
-   {
-    icon: <UserIcon />,
-    name: "Alunos",
-    path: "/alunos",
-  },
   {
-    icon: <CalenderIcon />,
-    name: "Cursos",
-    path: "/cursos",
-  },
-
-    {
-    icon: <CalenderIcon />,
-    name: "Eventos Certificação",
-    path: "/eventos_certificacao",
-  },
-
-    {
-    icon: <CalenderIcon />,
-    name: "Alunos Eventos",
-    path: "/alunos_eventos",
-  },
-  
-  {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
-  },
-  {
-    name: "Forms",
-    icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  },
-  {
-    name: "Tables",
-    icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  },
-  {
-    name: "Pages",
+    name: "M. de Capacitação",
     icon: <PageIcon />,
     subItems: [
-      { name: "Blank Page", path: "/blank", pro: false },
-      { name: "404 Error", path: "/error-404", pro: false },
+      { name: "Alunos", path: "/alunos", pro: false },
+      { name: "Cursos", path: "/cursos", pro: false },
+      { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
+      { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
+      { name: "Matrículas", path: "/matriculas", pro: false },
     ],
   },
+  {
+    name: "M. R. de Equipamentos",
+    icon: <PageIcon />,
+    subItems: [
+      // { name: "Alunos", path: "/alunos", pro: false },
+      // { name: "Cursos", path: "/cursos", pro: false },
+      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
+      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
+      // { name: "Matrículas", path: "/matriculas", pro: false },
+    ],
+  },
+  {
+    name: "M. D. de Resíduos",
+    icon: <PageIcon />,
+    subItems: [
+      // { name: "Alunos", path: "/alunos", pro: false },
+      // { name: "Cursos", path: "/cursos", pro: false },
+      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
+      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
+      // { name: "Matrículas", path: "/matriculas", pro: false },
+    ],
+  },
+  
+  // {
+  //   icon: <UserIcon />,
+  //   name: "Alunos",
+  //   path: "/alunos",
+  // },
+  // {
+  //   icon: <CalenderIcon />,
+  //   name: "Cursos",
+  //   path: "/cursos",
+  // },
+
+  //   {
+  //   icon: <CalenderIcon />,
+  //   name: "Eventos Certificação",
+  //   path: "/eventos-certificacao",
+  // },
+
+  // {
+  //   icon: <CalenderIcon />,
+  //   name: "Alunos Eventos",
+  //   path: "/alunos-eventos",
+  // },
+  // {
+  //   icon: <CalenderIcon />,
+  //   name: "Matrículas",
+  //   path: "/matriculas",
+  // },
+  
+  // {
+  //   icon: <UserCircleIcon />,
+  //   name: "User Profile",
+  //   path: "/profile",
+  // },
+  // {
+  //   name: "Forms",
+  //   icon: <ListIcon />,
+  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  // },
+  // {
+  //   name: "Tables",
+  //   icon: <TableIcon />,
+  //   subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+  // },
+  // {
+  //   name: "Pages",
+  //   icon: <PageIcon />,
+  //   subItems: [
+  //     { name: "Blank Page", path: "/blank", pro: false },
+  //     { name: "404 Error", path: "/error-404", pro: false },
+  //   ],
+  // },
 ];
 
 const othersItems: NavItem[] = [

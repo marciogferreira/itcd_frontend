@@ -23,6 +23,7 @@ import AlunosPages from "./pages/AlunosPages";
 import CursosPages from "./pages/CursosPages";
 import EventosCertificacoesPages from "./pages/EventosCertificacoesPages";
 import AlunosEventosPages from "./pages/AlunosEventosPages";
+import MatriculasPages from "./pages/MatriculasPages";
 
 export default function App() {
   
@@ -60,9 +61,11 @@ export default function App() {
 
             <Route path="/alunos" element={<AlunosPages />} />
             <Route path="/cursos" element={<CursosPages />} />
-            <Route path="/eventos_certificacao" element={<EventosCertificacoesPages />} />
-            <Route path="/alunos_eventos" element={<AlunosEventosPages />} />
+            <Route path="/eventos-certificacao" element={<EventosCertificacoesPages />} />
+            <Route path="/alunos-eventos" element={<AlunosEventosPages />} />
+            <Route path="/matriculas" element={<MatriculasPages />} />
             
+
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />

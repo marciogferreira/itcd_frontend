@@ -1,7 +1,9 @@
 import Crud from '../../components/Crud';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
+import Api from '../../config/Api';
+import SelectInputs from '../../components/form/form-elements/SelectInputs';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -11,9 +13,29 @@ type DataProps = {
 }
 
 const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
+
+    const [alunos, setAlunos] = useState([]);
+
+    async function getAlunos() {
+        const response = await Api.get('alunos/options')
+        setAlunos(response.data.data)
+    }
+
+    useEffect(() => {
+        getAlunos()
+    }, []);
+
     return (
         <>
             <div className='row'>
+
+                <div className='mb-3'>
+                    <SelectInputs options={alunos} label="Aluno" name="aluno_id" id="aluno_id" />
+                    <span className="error">
+                        <ErrorMessage name="aluno_id" component="span" />
+                    </span>
+                </div>
+
                 <div className='mb-3'>
                     <Label>Nome do Curso</Label>
                     <Input type="text" id="nome_curso" name="nome_curso" />

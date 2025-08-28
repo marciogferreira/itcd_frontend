@@ -13,18 +13,13 @@ type DataProps = {
 const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
     const [alunos, setAlunos] = useState([]);
+    const [cursos, setCursos] = useState([]);
 
     async function getAlunos() {
         const response = await Api.get('alunos/options')
         setAlunos(response.data.data)
     }
-
-    useEffect(() => {
-        getAlunos()
-    }, []);
-
-    const [cursos, setCursos] = useState([]);
-
+   
     async function getCursos() {
         const response = await Api.get('cursos/options')
         console.log(response.data.data)
@@ -32,6 +27,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     }
 
     useEffect(() => {
+        getAlunos()
         getCursos()
     }, []);
 
@@ -40,7 +36,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     return (
         <>
             <div className='row'>
-
+                
                 <div className='mb-3'>
                     <SelectInputs options={alunos} label="Aluno" name="aluno_id" id="aluno_id" />
                     <span className="error">

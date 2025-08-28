@@ -11,22 +11,27 @@ interface SelectProps {
   onChange: (value: string) => void;
   className?: string;
   defaultValue?: string;
+  form?: any;
+  field?: any;
 }
 
 const Select: React.FC<SelectProps> = ({
   options,
   placeholder = "Selecione",
-  onChange,
   className = "",
   defaultValue = "",
+  form = null,
+  field = null,
 }) => {
+  
+  console.log(form)
   // Manage the selected value
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedValue(value);
-    onChange(value); // Trigger parent handler
+    form.setFieldValue(field.name, value); // Trigger parent handler
   };
 
   return (

@@ -47,8 +47,10 @@ const Input: FC<InputProps> = ({
   }
 
   return (
+    
     <div className="relative">
       <Field
+        
         type={type}
         id={id}
         name={name}
@@ -56,7 +58,7 @@ const Input: FC<InputProps> = ({
         // value={value}
         // onChange={onChange}
         min={min}
-        max={max}
+        maxLength={max}
         step={step}
         disabled={disabled}
         className={inputClasses}

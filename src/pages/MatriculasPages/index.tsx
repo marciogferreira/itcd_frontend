@@ -74,15 +74,16 @@ export default function MatriculasPages() {
                 { name: 'turma_id', label: 'Turma' },
                 { name: 'turma_id', label: 'Certificado' },
             ]}
+            
               fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>
-                    <td>{item.aluno_id}</td>
+                    <td>{item.aluno.nome}</td>
                     <td>
-                        {item.turma_id}
+                        {item.turma.nome}
                     </td>
                     <td>
-                        <button className='p-2 bg-gray-500'>Gerar Certificado</button>
+                        <button className='p-2 bg-green-500'>Gerar Certificado</button>
                     </td>
                 </>
             )}

@@ -26,7 +26,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
                     <div className='mb-3'>
                         <Label>CPF</Label>
-                        <Input type="text" id="cpf" name="cpf" />
+                        <Input type="text" id="cpf" name="cpf" max='11' />
                         <span className="error">
                             <ErrorMessage name="cpf" component="span" />
                         </span>
@@ -79,13 +79,13 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                         </span>
                     </div>
 
-                    <div className='mb-3'>
+                    {/* <div className='mb-3'>
                         <Label>Data de Cadastro</Label>
                         <Input type="date" id="data_cadastro" name="data_cadastro" />
                         <span className="error">
                             <ErrorMessage name="data_cadastro" component="span" />
                         </span>
-                    </div>
+                    </div> */}
                 </div>
                 
                 <br />
@@ -151,7 +151,7 @@ export default function AlunosPages() {
             title="Alunos"
             endPoint="alunos"
             searchFieldName='search'
-            desc="Cadastros de Alunos"
+            desc="Cadastro de Alunos"
             emptyObject={{
                 nome: '',
                 cpf: '',
@@ -164,12 +164,13 @@ export default function AlunosPages() {
                 cidade: '',
                 telefone: '',
                 email: '',
-                data_cadastro: '',
+                // data_cadastro: '',
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'nome', label: 'Nome' },
                 { name: 'cpf', label: 'CPF' },
+                { name: 'telefone', label: 'Telefone' },
                 { name: 'email', label: 'Email' }
             ]}
             validation={(Yup: object | any) => {
@@ -184,8 +185,8 @@ export default function AlunosPages() {
                     estado: Yup.string().required('Campo obrigatório'),
                     cidade: Yup.string().required('Campo obrigatório'),
                     telefone: Yup.string().required('Campo obrigatório').matches(telefoneValido, 'Telefone inválido'),
-                    email: Yup.string().required('Campo obrigatório').email('E-mail inválido'),
-                    data_cadastro: Yup.string().required('Campo obrigatório'),
+                    email: Yup.string().required('Campo obrigatório').email('E-mail inválido')
+                    // data_cadastro: Yup.string().required('Campo obrigatório'),
                 };
             }}
             FormWrapper={FormWrapper} 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 /**
  * Componente de Certificado (layout inspirado na imagem enviada)

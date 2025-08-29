@@ -1,6 +1,6 @@
 
 import { Form, FormGroup } from 'react-bootstrap';
-// import InputMask from 'react-input-mask';
+import InputMask from "react-input-mask";
 
 export function Select(props: any) {
     return (
@@ -31,11 +31,6 @@ export function Select(props: any) {
     );
 }
 
-export function InputMaskCustom(props: any) {
-    return (
-        <>
-            {/* <InputMask value={props.value} onChange={props.onChange}  className="form-control"  {...props.field} {...props} /> */}
-            <div><span className="error">{props.error}</span></div>
-        </>
-    );
+export function InputMaskCustom() {
+    return <InputMask mask="99/99/9999" />
 }

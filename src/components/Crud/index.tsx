@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Pagination from '../Pagination';
 import Form from '../form';
 import Grid from '../Grid';
-import useDebounce from '../useDebounce';
+// import useDebounce from '../useDebounce';
 import Message from '../../config/Message';
 import Api from '../../config/Api';
 import ComponentCard from '../common/ComponentCard';
@@ -20,7 +20,7 @@ export default function Crud(props: any) {
     const [pagination, setPagination] = useState({});
     const [page, setPage] = useState(1);
     // const debouncedSearchTerm = useDebounce(search, 500);
-    const debouncedSearchParamsTerm = useDebounce(paramsSearch, 500);
+    // const debouncedSearchParamsTerm = useDebounce(paramsSearch, 500);
 
     async function loadData() {
         let params = {

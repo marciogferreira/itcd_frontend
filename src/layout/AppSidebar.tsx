@@ -45,28 +45,20 @@ const navItems: NavItem[] = [
       { name: "Eventos", path: "/eventos", pro: false },
     ],
   },
-  {
-    name: "M. R. de Equipamentos",
-    icon: <PageIcon />,
-    subItems: [
-      // { name: "Alunos", path: "/alunos", pro: false },
-      // { name: "Cursos", path: "/cursos", pro: false },
-      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
-      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
-      // { name: "Matrículas", path: "/matriculas", pro: false },
-    ],
-  },
-  {
-    name: "M. D. de Resíduos",
-    icon: <PageIcon />,
-    subItems: [
-      // { name: "Alunos", path: "/alunos", pro: false },
-      // { name: "Cursos", path: "/cursos", pro: false },
-      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
-      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
-      // { name: "Matrículas", path: "/matriculas", pro: false },
-    ],
-  },
+  // {
+  //   name: "M. R. de Equipamentos",
+  //   icon: <PageIcon />,
+  //   subItems: [
+  //     { name: "Alunos", path: "/alunos", pro: false },
+  //   ],
+  // },
+  // {
+  //   name: "M. D. de Resíduos",
+  //   icon: <PageIcon />,
+  //   subItems: [
+  //     { name: "Alunos", path: "/alunos", pro: false },
+  //   ],
+  // },
   
   // {
   //   icon: <UserIcon />,
@@ -173,7 +165,7 @@ const AppSidebar: React.FC = () => {
 
   useEffect(() => {
     let submenuMatched = false;
-    ["main", "others"].forEach((menuType) => {
+    ["main", ""].forEach((menuType) => {
       const items = menuType === "main" ? navItems : othersItems;
       items.forEach((nav, index) => {
         if (nav.subItems) {
@@ -419,7 +411,8 @@ const AppSidebar: React.FC = () => {
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
+                  ""
+                  // "Others"
                 ) : (
                   <HorizontaLDots />
                 )}

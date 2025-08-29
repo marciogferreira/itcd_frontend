@@ -5,8 +5,27 @@ import MonthlyTarget from "../../components/ecommerce/MonthlyTarget";
 // import RecentOrders from "../../components/ecommerce/RecentOrders";
 // import DemographicCard from "../../components/ecommerce/DemographicCard";
 import PageMeta from "../../components/common/PageMeta";
+import Api from "../../config/Api";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const[totais, setTotais] = useState({
+    alunos: 0,
+    cursos: 0,
+    turmas: 0,
+    matriculas: 0,
+    eventos: 0,
+  })
+
+  async function getTotais() {
+    const res = await Api.get('dashboard/totais');
+    setTotais(res.data.data)
+  }
+
+  useEffect(() => {
+    getTotais()
+  }, [])
   return (
     <>
       <PageMeta
@@ -15,7 +34,7 @@ export default function Home() {
       />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 space-y-6 xl:col-span-7">
-          <EcommerceMetrics />
+          <EcommerceMetrics totais={totais} />
 
           <MonthlySalesChart />
         </div>

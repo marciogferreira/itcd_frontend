@@ -10,7 +10,7 @@ type DataProps = {
   values: any;
 }
 
-const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
+const FormWrapper = ({ ErrorMessage, values, Field, setFieldValue }: DataProps) => {
     return (
         <>
             <div className='row'>
@@ -32,33 +32,23 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                         </span>
                     </div>
 
-                    <div className='mb-3'>
-                        <Label>Descrição</Label>
-                        <Input type="text" id="descricao" name="descricao" />
-                        <span className="error">
-                            <ErrorMessage name="descricao" component="span" />
-                        </span>
-                    </div>
+                  
 
                     <div className='mb-3'>
                         <Label>Modalidade</Label>
                         <select value={values.modalidade} onChange={e => setFieldValue('modalidade', e.target.value)} id="modalidade" name="modalidade" className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
                             <option value="">Selecione</option>
-                            <option value="presencial">Presencial</option>
-                            <option value="ead">EAD</option>
-                            <option value="hibrido">Híbrido</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="EAD">EAD</option>
+                            <option value="Hibrido">Híbrido</option>
                         </select>
                         
                         <span className="error">
-                            <ErrorMessage name="modalidade" component="span" />
+                        <ErrorMessage name="modalidade" component="span" />
                         </span>
                     </div>
 
-                </div>
-
-                <br />
-                <div className="grid md:grid-cols-3 gap-4">
-                    <div className='mb-3'>
+                     <div className='mb-3'>
                         <Label>Status</Label>
                         <select value={values.status} onChange={e => setFieldValue('status', e.target.value)} id="status" name="status" className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
                             <option value="">Selecione</option>
@@ -70,6 +60,10 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                         </span>
                     </div>
 
+                </div>
+
+                <br />
+                <div className="grid md:grid-cols-1 gap-4">
                     <div className='mb-3'>
                         <Label>Link</Label>
                         <Input type="text" id="link" name="link" />
@@ -77,7 +71,14 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                             <ErrorMessage name="link" component="span" />
                         </span>
                     </div>
+                </div>
 
+                  <div className='mb-3'>
+                    <Label>Descrição</Label>
+                    <Field as={'textarea'} className="p-4 rounded-md w-full border-2 border-gray-200" rows="5" type="text" id="descricao" name="descricao" />
+                    <span className="error">
+                        <ErrorMessage name="descricao" component="span" />
+                    </span>
                 </div>
                
             </div>           
@@ -114,7 +115,7 @@ export default function CursosPages() {
                     descricao:  Yup.string().required('Campo obrigatório'),
                     modalidade:  Yup.string().required('Campo obrigatório'),
                     status:  Yup.string().required('Campo obrigatório'),
-                    link:  Yup.string().required('Campo obrigatório'),
+                    link:  Yup.string().required('Campo obrigatório').url("URL Inválida"),
 
                 };
             } }

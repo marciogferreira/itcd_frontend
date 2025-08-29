@@ -94,14 +94,14 @@ export default function Crud(props: any) {
         }
     }, [page]);
 
-    useEffect(() => {
-        if(debouncedSearchParamsTerm) {
-            loadData();
-        }
-    }, [debouncedSearchParamsTerm]);
+    // useEffect(() => {
+    //     if(debouncedSearchParamsTerm) {
+    //         loadData();
+    //     }
+    // }, [debouncedSearchParamsTerm]);
     
     return (
-        <ComponentCard desc="Cadastros de Alunos" title={props.title} contentLeft={() => (
+        <ComponentCard desc={props.desc} title={props.title} contentLeft={() => (
             <>
                 {view === 'list' &&
                     <>

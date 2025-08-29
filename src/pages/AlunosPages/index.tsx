@@ -140,6 +140,7 @@ export default function AlunosPages() {
             title="Alunos"
             endPoint="alunos"
             searchFieldName='search'
+            desc="Cadastros de Alunos"
             emptyObject={{
                 nome: '',
                 cpf: '',
@@ -172,7 +173,7 @@ export default function AlunosPages() {
                     estado:  Yup.string().required('Campo obrigatório'),
                     cidade:  Yup.string().required('Campo obrigatório'),
                     telefone:  Yup.string().required('Campo obrigatório'),
-                    email:  Yup.string().required('Campo obrigatório')
+                    email:  Yup.string().required('Campo obrigatório').email("E-mail inválido")
                 };
             } }
             FormWrapper={FormWrapper} 

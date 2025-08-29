@@ -15,34 +15,40 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
         <>
             <div className='row'>
                 <div className='mb-3'>
-                    <Label>Nome do Evento</Label>
-                    <Input type="text" id="nome_evento" name="nome_evento" />
+                    <Label>Evento</Label>
+                    <Input type="text" id="nome" name="nome" />
                     <span className="error">
-                        <ErrorMessage name="nome_evento" component="span" />
+                        <ErrorMessage name="nome" component="span" />
                     </span>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-4">
 
                     <div className='mb-3'>
-                        <Label>Data do Evento</Label>
-                        <Input type="date" id="data_evento" name="data_evento" />
+                        <Label>Data</Label>
+                        <Input type="date" id="data" name="data" />
                         <span className="error">
-                            <ErrorMessage name="data_evento" component="span" />
+                            <ErrorMessage name="carga_horaria" component="span" />
                         </span>
                     </div>
 
                     <div className='mb-3'>
-                        <Label>Tipo de Evento</Label>
-                        <Input type="text" id="tipo_evento" name="tipo_evento" />
+                        <Label>Tipo</Label>
+                        <select value={values.tipo} onChange={e => setFieldValue('tipo', e.target.value)} id="tipo" name="tipo" className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
+                            <option value="">Selecione</option>
+                            <option value="presencial">Presencial</option>
+                            <option value="online">Online</option>
+                            <option value="email">E-mail</option>
+                            <option value="correio">Correio</option>
+                        </select>
                         <span className="error">
-                            <ErrorMessage name="tipo_evento" component="span" />
+                            <ErrorMessage name="tipo" component="span" />
                         </span>
                     </div>
 
                     <div className='mb-3'>
                         <Label>Localização</Label>
-                        <Input type="text" id="localizacao" name="localizacao" />
+                        <Input type="text" id="localizacao" name="localizacao" />                      
                         <span className="error">
                             <ErrorMessage name="localizacao" component="span" />
                         </span>
@@ -53,8 +59,8 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                 <br />
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className='mb-3'>
-                        <Label>Responsável</Label>
-                        <Input type="text" id="responsavel" name="responsavel" />
+                        <Label>Reponsável</Label>
+                        <Input type="text" id="responsavel" name="responsavel" />  
                         <span className="error">
                             <ErrorMessage name="responsavel" component="span" />
                         </span>
@@ -69,22 +75,22 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                     </div>
 
                 </div>
-              
+               
             </div>           
         </>
     );
 }
 
-export default function EventosCertificacoesPages() {
+export default function EventosPages() {
     return (
         <Crud
-            title="Eventos Certificacao"
-            endPoint="eventos-certificacoes"
+            title="Eventos"
+            endPoint="eventos"
             searchFieldName='search'
             emptyObject={{
-                nome_evento: '',
-                data_evento: '',
-                tipo_evento: '',
+                nome: '',
+                data: '',
+                tipo: '',
                 localizacao: '',
                 responsavel: '',
                 documentacao: '',
@@ -92,15 +98,16 @@ export default function EventosCertificacoesPages() {
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
-                { name: 'nome_evento', label: 'Evento' },
-                { name: 'data_evento', label: 'Data do Evento' },
-                { name: 'responsavel', label: 'Responsavel' }
+                { name: 'nome', label: 'Curso' },
+                { name: 'data', label: 'Data' },
+                { name: 'localizacao', label: 'Localização' },
+                { name: 'responsavel', label: 'Responsável' },
             ]}
             validation={(Yup: object | any) => {
                 return {
-                    nome_evento: Yup.string().required('Campo obrigatório'),
-                    data_evento: Yup.string().required('Campo obrigatório'),
-                    tipo_evento:  Yup.string().required('Campo obrigatório'),
+                    nome: Yup.string().required('Campo obrigatório'),
+                    data: Yup.string().required('Campo obrigatório'),
+                    tipo:  Yup.string().required('Campo obrigatório'),
                     localizacao:  Yup.string().required('Campo obrigatório'),
                     responsavel:  Yup.string().required('Campo obrigatório'),
                     documentacao:  Yup.string().required('Campo obrigatório'),

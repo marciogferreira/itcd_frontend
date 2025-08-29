@@ -2,6 +2,8 @@ import Crud from '../../components/Crud';
 import { ReactElement, useEffect, useState } from 'react';
 import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import Label from '../../components/form/Label';
+import Input from '../../components/form/input/InputField';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -11,24 +13,18 @@ type DataProps = {
 }
 
 const FormWrapper = ({ ErrorMessage}: DataProps) => {
+    
+    const [cursos, setCursos] = useState([]);
 
-    const [alunos, setAlunos] = useState([]);
-    const [turma, setTurmas] = useState([]);
-
-    async function getAlunos() {
-        const response = await Api.get('alunos/options')
-        setAlunos(response.data.data)
-    }
    
-    async function getTurmas() {
+    async function getCursos() {
         const response = await Api.get('cursos/options')
         console.log(response.data.data)
-        setTurmas(response.data.data)
+        setCursos(response.data.data)
     }
 
     useEffect(() => {
-        getAlunos()
-        getTurmas()
+        getCursos()
     }, []);
 
     
@@ -38,16 +34,17 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
             <div className='row'>
                 
                 <div className='mb-3'>
-                    <SelectInputs options={alunos} label="Aluno" name="aluno_id" id="aluno_id" />
+                    <Label>Nome da Turma</Label>
+                    <Input type="text" id="nome" name="nome" />
                     <span className="error">
-                        <ErrorMessage name="aluno_id" component="span" />
+                        <ErrorMessage name="nome" component="span" />
                     </span>
                 </div>
 
                 <div className='mb-3'>
-                    <SelectInputs options={turma} label="Turma" name="turma_id" id="turma_id" />
+                    <SelectInputs options={cursos} label="Curso" name="curso_id" id="curso_id" />
                     <span className="error">
-                        <ErrorMessage name="turma_id" component="span" />
+                        <ErrorMessage name="curso_id" component="span" />
                     </span>
                 </div>
               
@@ -56,39 +53,34 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
     );
 }
 
-export default function MatriculasPages() {
+export default function TurmasPages() {
     return (
         <Crud
-            title="Matrículas"
-            endPoint="matriculas"
+            title="Turmas"
+            endPoint="turmas"
             searchFieldName='search'
             emptyObject={{
-                aluno_id: '',
-                turma_id: '',
-                
+                nome: '',
+                curso_id: '',
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
-                { name: 'aluno_id', label: 'Aluno' },
-                { name: 'turma_id', label: 'Turma' },
-                { name: 'turma_id', label: 'Certificado' },
+                { name: 'nome', label: 'Turma' },
+                { name: 'curso_id', label: 'Curso' },
             ]}
-              fieldsHtml={({ item }: any) => (
+            fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>
-                    <td>{item.aluno_id}</td>
+                    <td>{item.nome}</td>
                     <td>
-                        {item.turma_id}
-                    </td>
-                    <td>
-                        <button className='p-2 bg-gray-500'>Gerar Certificado</button>
+                        {item.curso.nome}
                     </td>
                 </>
             )}
             validation={(Yup: object | any) => {
                 return {
-                    aluno_id: Yup.string().required('Campo obrigatório'),
-                    turma_id: Yup.string().required('Campo obrigatório'),
+                    nome: Yup.string().required('Campo obrigatório'),
+                    curso_id: Yup.string().required('Campo obrigatório'),
                 };
             } }
             FormWrapper={FormWrapper} 

@@ -16,7 +16,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
             <div className='row'>
                 <div className='mb-3'>
                     <Label>Nome do Curso</Label>
-                    <Input type="text" id="nome_curso" name="nome_curso" />
+                    <Input type="text" id="nome" name="nome" />
                     <span className="error">
                         <ErrorMessage name="nome_curso" component="span" />
                     </span>
@@ -92,7 +92,7 @@ export default function CursosPages() {
             endPoint="cursos"
             searchFieldName='search'
             emptyObject={{
-                nome_curso: '',
+                nome: '',
                 carga_horaria: '',
                 descricao: '',
                 modalidade: '',
@@ -102,13 +102,13 @@ export default function CursosPages() {
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
-                { name: 'nome_curso', label: 'Curso' },
+                { name: 'nome', label: 'Curso' },
                 { name: 'carga_horaria', label: 'Carga horária' },
                 { name: 'descricao', label: 'Descrição' }
             ]}
             validation={(Yup: object | any) => {
                 return {
-                    nome_curso: Yup.string().required('Campo obrigatório'),
+                    nome: Yup.string().required('Campo obrigatório'),
                     carga_horaria: Yup.string().required('Campo obrigatório'),
                     descricao:  Yup.string().required('Campo obrigatório'),
                     modalidade:  Yup.string().required('Campo obrigatório'),

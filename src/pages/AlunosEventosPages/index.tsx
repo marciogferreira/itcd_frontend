@@ -14,6 +14,7 @@ type DataProps = {
 const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     
     const [alunos, setAlunos] = useState([]);
+    const [evento, setEvento] = useState([]);
 
     async function getAlunos() {
         const response = await Api.get('alunos/options')
@@ -23,8 +24,6 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
     useEffect(() => {
         getAlunos()
     }, []);
-
-    const [evento, setEvento] = useState([]);
 
     async function getEvento() {
         const response = await Api.get('eventos-certificacoes/options')

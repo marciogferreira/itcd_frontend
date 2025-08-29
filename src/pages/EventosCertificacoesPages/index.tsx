@@ -10,7 +10,7 @@ type DataProps = {
   values: any;
 }
 
-const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
+const FormWrapper = ({ ErrorMessage}: DataProps) => {
     return (
         <>
             <div className='row'>

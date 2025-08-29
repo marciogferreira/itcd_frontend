@@ -5,17 +5,17 @@ import { Link, useLocation } from "react-router";
 import {
   // CalenderIcon,
   // BoxCubeIcon,
-  CalenderIcon,
+  //CalenderIcon,
   ChevronDownIcon,
   GridIcon,
   HorizontaLDots,
-  ListIcon,
+  //ListIcon,
   PageIcon,
   // PieChartIcon,
   // PlugInIcon,
-  TableIcon,
-  UserCircleIcon,
-  UserIcon,
+  //TableIcon,
+  //UserCircleIcon,
+  //UserIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 // import SidebarWidget from "./SidebarWidget";
@@ -40,9 +40,11 @@ const navItems: NavItem[] = [
     subItems: [
       { name: "Alunos", path: "/alunos", pro: false },
       { name: "Cursos", path: "/cursos", pro: false },
+      { name: "Turmas", path: "/turmas", pro: false },
+      { name: "Matrículas", path: "/matriculas", pro: false },
       { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
       { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
-      { name: "Matrículas", path: "/matriculas", pro: false },
+
     ],
   },
   {

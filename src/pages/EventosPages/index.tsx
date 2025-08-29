@@ -87,6 +87,7 @@ export default function EventosPages() {
             title="Eventos"
             endPoint="eventos"
             searchFieldName='search'
+            desc="Cadastro de eventos"
             emptyObject={{
                 nome: '',
                 data: '',

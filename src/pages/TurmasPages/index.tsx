@@ -59,6 +59,7 @@ export default function TurmasPages() {
             title="Turmas"
             endPoint="turmas"
             searchFieldName='search'
+            desc="Cadastro de Turmas"
             emptyObject={{
                 nome: '',
                 curso_id: '',

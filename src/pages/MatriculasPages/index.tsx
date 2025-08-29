@@ -61,6 +61,7 @@ export default function MatriculasPages() {
         <Crud
             title="Matrículas"
             endPoint="matriculas"
+            desc="Cadastro de Matrículas"
             searchFieldName='search'
             emptyObject={{
                 aluno_id: '',

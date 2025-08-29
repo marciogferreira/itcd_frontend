@@ -18,7 +18,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                     <Label>Nome do Curso</Label>
                     <Input type="text" id="nome" name="nome" />
                     <span className="error">
-                        <ErrorMessage name="nome_curso" component="span" />
+                        <ErrorMessage name="nome" component="span" />
                     </span>
                 </div>
 
@@ -91,7 +91,7 @@ export default function CursosPages() {
             title="Cursos"
             endPoint="cursos"
             searchFieldName='search'
-            desc="Cadastros de Cursos"
+            desc="Cadastro de Cursos"
             emptyObject={{
                 nome: '',
                 carga_horaria: '',

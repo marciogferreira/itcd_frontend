@@ -42,7 +42,13 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
                     <div className='mb-3'>
                         <Label>Gênero</Label>
-                        <select value={values.genero} onChange={e => setFieldValue('genero', e.target.value)} id="genero" name="genero" className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
+                        <select
+                          value={values.genero}
+                          onChange={e => setFieldValue('genero', e.target.value)}
+                          id="genero"
+                          name="genero"
+                          className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+                        >
                             <option value="">Selecione</option>
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
@@ -135,6 +141,11 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 }
 
 export default function AlunosPages() {
+
+    const cpfValido = /^(\d{3}\.?\d{3}\.?\d{3}-?\d{2})$/;
+
+    const telefoneValido = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+
     return (
         <Crud
             title="Alunos"
@@ -164,18 +175,19 @@ export default function AlunosPages() {
             validation={(Yup: object | any) => {
                 return {
                     nome: Yup.string().required('Campo obrigatório'),
-                    cpf: Yup.string().required('Campo obrigatório'),
-                    data_nascimento:  Yup.string().required('Campo obrigatório'),
-                    genero:  Yup.string().required('Campo obrigatório'),
-                    tipo_logradouro:  Yup.string().required('Campo obrigatório'),
-                    logradouro:  Yup.string().required('Campo obrigatório'),
-                    numero:  Yup.string().required('Campo obrigatório'),
-                    estado:  Yup.string().required('Campo obrigatório'),
-                    cidade:  Yup.string().required('Campo obrigatório'),
-                    telefone:  Yup.string().required('Campo obrigatório'),
-                    email:  Yup.string().required('Campo obrigatório').email("E-mail inválido")
+                    cpf: Yup.string().required('Campo obrigatório').matches(cpfValido, 'CPF inválido'),
+                    data_nascimento: Yup.string().required('Campo obrigatório'),
+                    genero: Yup.string().required('Campo obrigatório'),
+                    tipo_logradouro: Yup.string().required('Campo obrigatório'),
+                    logradouro: Yup.string().required('Campo obrigatório'),
+                    numero: Yup.string().required('Campo obrigatório'),
+                    estado: Yup.string().required('Campo obrigatório'),
+                    cidade: Yup.string().required('Campo obrigatório'),
+                    telefone: Yup.string().required('Campo obrigatório').matches(telefoneValido, 'Telefone inválido'),
+                    email: Yup.string().required('Campo obrigatório').email('E-mail inválido'),
+                    data_cadastro: Yup.string().required('Campo obrigatório'),
                 };
-            } }
+            }}
             FormWrapper={FormWrapper} 
             columns={[]} 
             enableBtnNew={false} 
@@ -189,6 +201,7 @@ export default function AlunosPages() {
             showSort={false}
             showTotal={false} 
             showViewHistory={false}
-            showViewAlterStatus={false}        />
+            showViewAlterStatus={false}        
+        />
     );
 }

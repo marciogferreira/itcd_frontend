@@ -44,9 +44,9 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                         <Label>Modalidade</Label>
                         <select value={values.modalidade} onChange={e => setFieldValue('modalidade', e.target.value)} id="modalidade" name="modalidade" className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
                             <option value="">Selecione</option>
-                            <option value="Presencial">Presencial</option>
-                            <option value="EAD">EAD</option>
-                            <option value="Hibrido">Híbrido</option>
+                            <option value="presencial">Presencial</option>
+                            <option value="ead">EAD</option>
+                            <option value="hibrido">Híbrido</option>
                         </select>
                         
                         <span className="error">

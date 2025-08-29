@@ -21,8 +21,7 @@ import Home from "./pages/Dashboard/Home";
 import { useAuth } from "./context/AuthContext";
 import AlunosPages from "./pages/AlunosPages";
 import CursosPages from "./pages/CursosPages";
-import EventosCertificacoesPages from "./pages/EventosCertificacoesPages";
-import AlunosEventosPages from "./pages/AlunosEventosPages";
+import EventosPages from "./pages/EventosPages";
 import MatriculasPages from "./pages/MatriculasPages";
 import TurmasPages from "./pages//TurmasPages";
 
@@ -64,8 +63,7 @@ export default function App() {
             <Route path="/cursos" element={<CursosPages />} />
             <Route path="/turmas" element={<TurmasPages />} />
             <Route path="/matriculas" element={<MatriculasPages />} />
-            <Route path="/eventos-certificacao" element={<EventosCertificacoesPages />} />
-            <Route path="/alunos-eventos" element={<AlunosEventosPages />} />
+            <Route path="/eventos" element={<EventosPages />} />
             
 
             {/* Others Page */}

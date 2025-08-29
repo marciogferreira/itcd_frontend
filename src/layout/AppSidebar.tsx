@@ -42,8 +42,7 @@ const navItems: NavItem[] = [
       { name: "Cursos", path: "/cursos", pro: false },
       { name: "Turmas", path: "/turmas", pro: false },
       { name: "Matrículas", path: "/matriculas", pro: false },
-      { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
-      { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
+      { name: "Eventos", path: "/eventos", pro: false },
 
     ],
   },

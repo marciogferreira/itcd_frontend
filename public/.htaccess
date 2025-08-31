@@ -1,0 +1,24 @@
+# --------------------------------------------------------------------
+# React SPA: redireciona qualquer rota "não-arquivo" para /index.html
+# --------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Se sua app estiver NA RAIZ do domínio use:
+  RewriteBase /
+
+  # Se estiver em um subdiretório (ex.: /app), troque para:
+  # RewriteBase /app/
+
+  # Não reescrever se o caminho for um arquivo ou diretório real
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Caso contrário, envia tudo para o index.html da SPA
+  # Na raiz:
+  RewriteRule . /index.html [L]
+
+  # Em subdiretório (descomente e ajuste):
+  # RewriteRule . /app/index.html [L]
+</IfModule>

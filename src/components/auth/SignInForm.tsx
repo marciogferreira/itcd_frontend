@@ -134,7 +134,7 @@ export default function SignInForm() {
                     <Input 
                       id="login" 
                       name="login"
-                      placeholder="000.000.000-00" 
+                      placeholder="CPF ou Email" 
                     />
                     <span className="text-red-600">
                       <ErrorMessage name="login" />

@@ -11,6 +11,7 @@ import {
   HorizontaLDots,
   //ListIcon,
   PageIcon,
+  UserIcon,
   // PieChartIcon,
   // PlugInIcon,
   //TableIcon,
@@ -42,8 +43,13 @@ const navItems: NavItem[] = [
       { name: "Cursos", path: "/cursos", pro: false },
       { name: "Turmas", path: "/turmas", pro: false },
       { name: "Matrículas", path: "/matriculas", pro: false },
-      { name: "Eventos", path: "/eventos", pro: false },
+      { name: "Eventos", path: "/eventos", pro: false }
     ],
+  },
+  {
+    icon: <UserIcon />,
+    name: "Usuários",
+    path: "/usuarios",
   },
   // {
   //   name: "M. R. de Equipamentos",

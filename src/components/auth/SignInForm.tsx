@@ -17,8 +17,6 @@ export default function SignInForm() {
   const { setLoading, signIn } = useAuth()
   
   async function handleLogin(values: any) {
-    console.log(values)
-
      try {
       setLoading(true)
       const response = await Api.post('login', {

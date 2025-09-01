@@ -1,13 +1,13 @@
 export default function LoadingScreen() {
-    const visible = false;
+    
     return (
         <div 
-            className="loading" 
+            className="" 
             style={{ 
-                display: visible ? 'block' : 'none',
+                display: 'block',
                 backgroundColor: 'rgba(0,0,0,0.5)', 
                 position: 'fixed', 
-                zIndex: 1000, 
+                zIndex: "200000", 
                 width: '100%',
                 height: '100vh',
                 justifyContent: "center",

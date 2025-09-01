@@ -25,15 +25,18 @@ import EventosPages from "./pages/EventosPages";
 import MatriculasPages from "./pages/MatriculasPages";
 import TurmasPages from "./pages//TurmasPages";
 import UsuariosPages from "./pages/UsuariosPages";
+import LoadingScreen from "./components/LoadingScreen";
 
 export default function App() {
   
-  const { isLogged } = useAuth()
+  const { isLogged, loading } = useAuth()
 
   if(!isLogged) {
      return (
     <>
+      
       <Router>
+        {loading && <LoadingScreen />}
         <ScrollToTop />
         <Routes>
 
@@ -51,7 +54,10 @@ export default function App() {
 
   return (
     <>
+      
       <Router>
+        {loading && <LoadingScreen />}
+        
         <ScrollToTop />
         <Routes>
 

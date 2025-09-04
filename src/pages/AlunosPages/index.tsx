@@ -2,6 +2,7 @@ import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
+import InputMask from 'react-input-mask';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -23,10 +24,15 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-4">
-
                     <div className='mb-3'>
                         <Label>CPF</Label>
-                        <Input type="text" id="cpf" name="cpf" max='11' />
+                        <InputMask
+                            mask="999.999.999-99"
+                            value={values.cpf}
+                            onChange={e => setFieldValue('cpf', e.target.value)}
+                        >
+                            {(inputProps: any) => <Input {...inputProps} type="text" id="cpf" name="cpf" />}
+                        </InputMask>
                         <span className="error">
                             <ErrorMessage name="cpf" component="span" />
                         </span>
@@ -58,14 +64,19 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                             <ErrorMessage name="genero" component="span" />
                         </span>
                     </div>
-
                 </div>
 
                 <br />
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className='mb-3'>
                         <Label>Telefone</Label>
-                        <Input type="text" id="telefone" name="telefone" />
+                        <InputMask
+                            mask="(99) 99999-9999"
+                            value={values.telefone}
+                            onChange={e => setFieldValue('telefone', e.target.value)}
+                        >
+                            {(inputProps: any) => <Input {...inputProps} type="text" id="telefone" name="telefone" />}
+                        </InputMask>
                         <span className="error">
                             <ErrorMessage name="telefone" component="span" />
                         </span>
@@ -87,10 +98,9 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                         </span>
                     </div> */}
                 </div>
-                
+
                 <br />
                 <div className="grid md:grid-cols-3 gap-4">
-
                     <div className='mb-3'>
                         <Label>Tipo de Logradouro</Label>
                         <Input type="text" id="tipo_logradouro" name="tipo_logradouro" />
@@ -114,10 +124,9 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                             <ErrorMessage name="numero" component="span" />
                         </span>
                     </div>
-
                 </div>
-                <br />
 
+                <br />
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className='mb-3'>
                         <Label>Estado</Label>
@@ -142,8 +151,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
 export default function AlunosPages() {
 
-    const cpfValido = /^(\d{3}\.?\d{3}\.?\d{3}-?\d{2})$/;
-
+    const cpfValido = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$/;
     const telefoneValido = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
 
     return (

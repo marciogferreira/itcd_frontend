@@ -26,6 +26,10 @@ import MatriculasPages from "./pages/MatriculasPages";
 import TurmasPages from "./pages//TurmasPages";
 import UsuariosPages from "./pages/UsuariosPages";
 import LoadingScreen from "./components/LoadingScreen";
+import DoadoresPages from "./pages/DoadoresPages";
+import DoacoesPages from "./pages/DoacoesPages";
+import DoacoesEfetuadasPages from "./pages/DoacoesEfetuadasPages";
+import DescartesPages from "./pages/DescartesPages";
 
 export default function App() {
   
@@ -66,6 +70,8 @@ export default function App() {
 
             <Route index path="/" element={<Home />} />
 
+            {/*M. de Capacitação */}
+
             <Route path="/alunos" element={<AlunosPages />} />
             <Route path="/cursos" element={<CursosPages />} />
             <Route path="/turmas" element={<TurmasPages />} />
@@ -73,6 +79,13 @@ export default function App() {
             <Route path="/eventos" element={<EventosPages />} />
             <Route path="/usuarios" element={<UsuariosPages />} />
             
+
+            {/*M. R. de Equipamentos*/}
+
+            <Route path="/doadores" element={<DoadoresPages />} />
+            <Route path="/doacoes" element={<DoacoesPages />} />
+            <Route path="/doacoes-efetuadas" element={<DoacoesEfetuadasPages />} />
+            <Route path="/descartes" element={<DescartesPages />} />
 
             {/* Others Page */}
             {/* <Route path="/profile" element={<UserProfiles />} />

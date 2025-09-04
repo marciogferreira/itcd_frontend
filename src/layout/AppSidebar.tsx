@@ -47,9 +47,31 @@ const navItems: NavItem[] = [
     ],
   },
   {
+<<<<<<< HEAD
     icon: <UserIcon />,
     name: "Usuários",
     path: "/usuarios",
+=======
+    name: "M. R. de Equipamentos",
+    icon: <PageIcon />,
+    subItems: [
+      { name: "Doadores", path: "/doadores", pro: false },
+      { name: "Doações", path: "/doacoes", pro: false },
+      { name: "Doacoes Efetuadas", path: "/doacoes-efetuadas", pro: false },
+      { name: "Descartes", path: "/descartes", pro: false },
+    ],
+  },
+  {
+    name: "M. D. de Resíduos",
+    icon: <PageIcon />,
+    subItems: [
+      // { name: "Alunos", path: "/alunos", pro: false },
+      // { name: "Cursos", path: "/cursos", pro: false },
+      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
+      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
+      // { name: "Matrículas", path: "/matriculas", pro: false },
+    ],
+>>>>>>> 83dc0a5 (Criando pagina de doações, doador e descartes)
   },
   // {
   //   name: "M. R. de Equipamentos",

@@ -1,7 +1,7 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Input, { InputCustom } from '../../components/form/input/InputField';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -107,7 +107,29 @@ export default function CursosPages() {
                 { name: 'carga_horaria', label: 'Carga horária' },
                 { name: 'descricao', label: 'Descrição' }
             ]}
-           
+           FormSearch={({ params, setParams }: any) => (
+                <>
+                    <InputCustom
+                        placeholder='Filtrar por Curso' 
+                        type="text" id="nome" name="nome" 
+                        onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                    
+                    <div className="flex gap-5">
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por Carga Horária' 
+                            type="text" id="carga_horaria" name="carga_horaria" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por Descrição' 
+                            type="text" id="descricao" name="descricao" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                    </div>
+                </>
+            )}
             validation={(Yup: object | any) => {
                 return {
                     nome: Yup.string().required('Campo obrigatório'),

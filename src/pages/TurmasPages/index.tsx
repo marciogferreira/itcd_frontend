@@ -42,6 +42,7 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
                 </div>
 
                 <div className='mb-3'>
+                    
                     <SelectInputs options={cursos} label="Curso" name="curso_id" id="curso_id" />
                     <span className="error">
                         <ErrorMessage name="curso_id" component="span" />

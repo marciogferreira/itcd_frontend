@@ -1,8 +1,8 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
-import InputMask from 'react-input-mask';
+import Input, { InputCustom } from '../../components/form/input/InputField';
+
 
 type DataProps = {
   Field: ReactElement | any;
@@ -26,13 +26,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className='mb-3'>
                         <Label>CPF</Label>
-                        <InputMask
-                            mask="999.999.999-99"
-                            value={values.cpf}
-                            onChange={e => setFieldValue('cpf', e.target.value)}
-                        >
-                            {(inputProps: any) => <Input {...inputProps} type="text" id="cpf" name="cpf" />}
-                        </InputMask>
+                        <Input type="text" id="cpf" name="cpf" />
                         <span className="error">
                             <ErrorMessage name="cpf" component="span" />
                         </span>
@@ -70,13 +64,7 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className='mb-3'>
                         <Label>Telefone</Label>
-                        <InputMask
-                            mask="(99) 99999-9999"
-                            value={values.telefone}
-                            onChange={e => setFieldValue('telefone', e.target.value)}
-                        >
-                            {(inputProps: any) => <Input {...inputProps} type="text" id="telefone" name="telefone" />}
-                        </InputMask>
+                        <Input type="text" id="telefone" name="telefone" />
                         <span className="error">
                             <ErrorMessage name="telefone" component="span" />
                         </span>
@@ -151,7 +139,8 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
 export default function AlunosPages() {
 
-    const cpfValido = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$/;
+    // const cpfValido = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$/;
+    const cpfValido = /^(\d{11})$/;
     const telefoneValido = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
 
     return (
@@ -181,6 +170,29 @@ export default function AlunosPages() {
                 { name: 'telefone', label: 'Telefone' },
                 { name: 'email', label: 'Email' }
             ]}
+            FormSearch={({ params, setParams }: any) => (
+                <>
+                    <InputCustom 
+                        placeholder='Filtrar por Nome' 
+                        type="text" id="nome" name="nome" 
+                        onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                    
+                    <div className="flex gap-5">
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por CPF' 
+                            type="text" id="cpf" name="cpf" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por E-mail' 
+                            type="text" id="email" name="email" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                    </div>
+                </>
+            )}
             validation={(Yup: object | any) => {
                 return {
                     nome: Yup.string().required('Campo obrigatório'),

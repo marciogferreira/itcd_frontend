@@ -2,6 +2,8 @@ import Crud from '../../components/Crud';
 import { ReactElement, useEffect, useState } from 'react';
 import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
+// import ToggleSwitch from '../../components/form/form-elements/ToggleSwitch';
+import Switch from '../../components/form/switch/Switch';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -21,7 +23,7 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
     }
    
     async function getTurmas() {
-        const response = await Api.get('cursos/options')
+        const response = await Api.get('turmas/options')
         console.log(response.data.data)
         setTurmas(response.data.data)
     }
@@ -50,7 +52,7 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
                         <ErrorMessage name="turma_id" component="span" />
                     </span>
                 </div>
-              
+                
             </div>           
         </>
     );
@@ -72,6 +74,7 @@ export default function MatriculasPages() {
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'aluno_id', label: 'Aluno' },
                 { name: 'turma_id', label: 'Turma' },
+                { name: 'turma_id', label: 'Exibir Certificado p Aluno' },
                 { name: 'turma_id', label: 'Certificado' },
             ]}
             
@@ -79,8 +82,12 @@ export default function MatriculasPages() {
                 <>
                     <td>{item.id}</td>
                     <td>{item.aluno.nome}</td>
-                    <td>
-                        {item.turma.nome}
+                    <td>{item.turma.nome}</td><td>
+                        <Switch
+                            label="Ativo"
+                            defaultChecked={true}
+                            onChange={e => alert(e)}
+                        />
                     </td>
                     <td>
                         <button className='p-2 bg-green-500'>Gerar Certificado</button>

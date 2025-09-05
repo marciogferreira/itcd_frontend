@@ -1,81 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Pagination from '../Pagination';
 import Form from '../form';
 import Grid from '../Grid';
-// import useDebounce from '../useDebounce';
+import useDebounce from '../useDebounce';
 import Message from '../../config/Message';
 import Api from '../../config/Api';
 import ComponentCard from '../common/ComponentCard';
-// import { useAuth } from '../../context/AuthContext';
-
 import { useQuery } from '@tanstack/react-query'
-
 // import LoadingScreen from '../LoadingScreen';
 
 export default function Crud(props: any) {   
-
-    
+   
     const [view, setView] = useState('list');
     const [data, setData] = useState(props.emptyObject);
     const [list, setList] = useState([]);
     // const [search, setSearch] = useState('');
-    const search = '';
     const [files, setFiles] = useState(null);
     const [paramsSearch, setParamsSearch] = useState({});
     const [pagination, setPagination] = useState({});
     const [page, setPage] = useState(1);
-    const {  } = useQuery({
-        queryKey: ['repoData'],
+    const debouncedSearchParamsTerm = useDebounce(paramsSearch, 500);
+
+    const { isPending } = useQuery({
+        queryKey: ['repoData', debouncedSearchParamsTerm, page],
         queryFn: () =>
-        Api.get(props.endPoint, { params: { }}).then((res) => {
+        Api.get(props.endPoint, { params: { ...paramsSearch, page: page }}).then((res) => {
             setList(res.data.data);
             setPagination(res.data);
             return res.data
         }),
     })
-    
-    // const debouncedSearchTerm = useDebounce(search, 500);
-    // const debouncedSearchParamsTerm = useDebounce(paramsSearch, 500);
-
-    async function loadData() {
-        let params = {
-            page: page,
-            ...paramsSearch
-        };
-        
-        if(props.searchFieldName && search) {
-            // params[props.searchFieldName] = search;
-        }
-        try {
-            
-            console.log("LoadData")
-            const { isPending, error, data } = useQuery({
-                queryKey: ['repoData'],
-                queryFn: () =>
-                Api.get(props.endPoint, { params: { ...params}}).then((res) =>
-                    res.data,
-                ),
-            })
-            console.log("isPending", isPending)
-            console.log("error", error)
-            console.log("data", data)
-            // if (isPending) return 'Loading...'
-
-            // if (error) return 'An error has occurred: ' + error.message
-            console.log(data)
-            
-            // const response = await Api.get(props.endPoint, {
-            //     params: { ...params}
-            // });
-            // setList(data.data);
-            // setPagination(data);
-        } catch(e) {
-
-        } finally {
-            // setLoading(false)
-        }
-       
-    }
+    console.log(isPending)
+    async function loadData() {}
     
     async function handleSubmit (values: any) {
         let msg = 'Registro Salvo com Sucesso';
@@ -126,19 +82,7 @@ export default function Crud(props: any) {
         loadData(); 
         console.log(item)       
     }
-
-    useEffect(() => {
-        if(page) {
-            loadData();
-        }
-    }, [page]);
-
-    // useEffect(() => {
-    //     if(debouncedSearchParamsTerm) {
-    //         loadData();
-    //     }
-    // }, [debouncedSearchParamsTerm]);
-    
+   
     return (
         <>
             <ComponentCard desc={props.desc} title={props.title} contentLeft={() => (

@@ -30,7 +30,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
           )}
         </div>
         <div>
-          {contentLeft()}
+          {contentLeft && contentLeft()}
         </div>
       </div>
 

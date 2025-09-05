@@ -30,6 +30,7 @@ import DoadoresPages from "./pages/DoadoresPages";
 import DoacoesPages from "./pages/DoacoesPages";
 import DoacoesEfetuadasPages from "./pages/DoacoesEfetuadasPages";
 import DescartesPages from "./pages/DescartesPages";
+import FormElements from "./pages/Forms/FormElements";
 
 export default function App() {
   
@@ -93,7 +94,7 @@ export default function App() {
             <Route path="/blank" element={<Blank />} /> */}
 
             {/* Forms */}
-            {/* <Route path="/form-elements" element={<FormElements />} /> */}
+            <Route path="/form-elements" element={<FormElements />} />
 
             {/* Tables */}
             {/* <Route path="/basic-tables" element={<BasicTables />} /> */}

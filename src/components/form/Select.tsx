@@ -41,7 +41,7 @@ const Select: React.FC<SelectProps> = ({
           ? "text-gray-800 dark:text-white/90"
           : "text-gray-400 dark:text-gray-400"
       } ${className}`}
-      value={selectedValue}
+      value={field.value}
       onChange={handleChange}
     >
       {/* Placeholder option */}

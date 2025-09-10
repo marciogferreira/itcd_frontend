@@ -19,6 +19,7 @@ import {
   //UserIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 // import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -27,7 +28,18 @@ type NavItem = {
   path?: string;
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
-
+const navItemsAlunos: NavItem[] = [
+    {
+      icon: <GridIcon />,
+      name: "Painel",
+      path: "/",
+    },
+    {
+      icon: <GridIcon />,
+      name: "Certificados",
+      path: "/certificados",
+    },
+];
 const navItems: NavItem[] = [
   
   {
@@ -171,6 +183,8 @@ const othersItems: NavItem[] = [
 ];
 
 const AppSidebar: React.FC = () => {
+
+  const { user } = useAuth();
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const location = useLocation();
 
@@ -192,7 +206,7 @@ const AppSidebar: React.FC = () => {
   useEffect(() => {
     let submenuMatched = false;
     ["main", ""].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+      const items = menuType === "main" ? navItems : navItemsAlunos;
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
@@ -426,7 +440,8 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots className="size-6" />
                 )}
               </h2>
-              {renderMenuItems(navItems, "main")}
+              {user && user.role == 2 && renderMenuItems(navItemsAlunos, "main")}
+              {user && user.role == 1 && renderMenuItems(navItems, "main")}
             </div>
             <div className="">
               <h2

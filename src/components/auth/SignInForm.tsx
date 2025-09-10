@@ -115,7 +115,6 @@ export default function SignInForm() {
                 login: Yup.string()
                   .required('Campo obrigatório.'),
                 senha: Yup.string()
-                  .min(6, 'A senha deve ter pelo menos 6 caracteres.')
                   .required('A senha é obrigatória.'),
               })}
               onSubmit={(values: any) => {

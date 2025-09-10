@@ -28,9 +28,9 @@ import UsuariosPages from "./pages/UsuariosPages";
 import LoadingScreen from "./components/LoadingScreen";
 import DoadoresPages from "./pages/DoadoresPages";
 import DoacoesPages from "./pages/DoacoesPages";
-import DoacoesEfetuadasPages from "./pages/DoacoesEfetuadasPages";
 import DescartesPages from "./pages/DescartesPages";
 import FormElements from "./pages/Forms/FormElements";
+import DonatariosPages from "./pages/DoanatariosPages";
 
 export default function App() {
   
@@ -85,7 +85,7 @@ export default function App() {
 
             <Route path="/doadores" element={<DoadoresPages />} />
             <Route path="/doacoes" element={<DoacoesPages />} />
-            <Route path="/doacoes-efetuadas" element={<DoacoesEfetuadasPages />} />
+            <Route path="/donatarios" element={<DonatariosPages />} />
             <Route path="/descartes" element={<DescartesPages />} />
 
             {/* Others Page */}

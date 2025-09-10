@@ -53,19 +53,14 @@ const navItems: NavItem[] = [
     subItems: [
       { name: "Doadores", path: "/doadores", pro: false },
       { name: "Doações", path: "/doacoes", pro: false },
-      { name: "Doacoes Efetuadas", path: "/doacoes-efetuadas", pro: false },
-      { name: "Descartes", path: "/descartes", pro: false },
+      { name: "Donatários", path: "/donatarios", pro: false },
     ],
   },
   {
     name: "M. D. de Resíduos",
     icon: <PageIcon />,
     subItems: [
-      // { name: "Alunos", path: "/alunos", pro: false },
-      // { name: "Cursos", path: "/cursos", pro: false },
-      // { name: "Eventos Certificação", path: "/eventos-certificacao", pro: false },
-      // { name: "Alunos Eventos", path: "/alunos-eventos", pro: false },
-      // { name: "Matrículas", path: "/matriculas", pro: false },
+      { name: "Descartes", path: "/descartes", pro: false },
     ],
     
   },

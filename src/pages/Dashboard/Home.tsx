@@ -9,10 +9,12 @@ import Api from "../../config/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { GroupIcon } from "../../icons";
+import Loading from "../../components/Loading";
 
 export default function Home() {
 
   const { user } = useAuth();
+  const[loading, setLoading] = useState(false)
   const[turmas, setTurmas] = useState([]);
   const[totais, setTotais] = useState({
     alunos: 0,
@@ -23,17 +25,33 @@ export default function Home() {
   })
 
   async function getTotais() {
-    const res = await Api.get('dashboard/totais');
-    setTotais(res.data.data)
+    try {
+      setLoading(true)
+      const res = await Api.get('dashboard/totais');
+      setTotais(res.data.data)
+    } catch(e) {
+
+    } finally {
+      setLoading(false)
+    }
+    
   }
 
   async function getTurmas() {
-    const res = await Api.get('matriculas', {
-      params: {
-        aluno_cpf: user && user.email
-      }
-    });
-    setTurmas(res.data.data)
+   
+     try {
+      setLoading(true)
+      const res = await Api.get('matriculas', {
+        params: {
+          aluno_cpf: user && user.email
+        }
+      });
+      setTurmas(res.data.data)
+    } catch(e) {
+
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -43,6 +61,7 @@ export default function Home() {
 
   return (
     <>
+      {loading && <Loading />}
       <PageMeta
         title="ITCD - "
         description="This is React.js Ecommerce Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"

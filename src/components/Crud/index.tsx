@@ -35,7 +35,9 @@ export default function Crud(props: any) {
         }),
     })
     
-    async function loadData() {}
+    async function loadData() {
+        refetch()
+    }
     
     async function handleSubmit (values: any) {
         let msg = 'Registro Salvo com Sucesso';

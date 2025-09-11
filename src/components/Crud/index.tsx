@@ -7,6 +7,7 @@ import Message from '../../config/Message';
 import Api from '../../config/Api';
 import ComponentCard from '../common/ComponentCard';
 import { useQuery } from '@tanstack/react-query'
+import Loading from '../Loading';
 // import LoadingScreen from '../LoadingScreen';
 
 export default function Crud(props: any) {   
@@ -15,22 +16,25 @@ export default function Crud(props: any) {
     const [data, setData] = useState(props.emptyObject);
     const [list, setList] = useState([]);
     // const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(true);
     const [files, setFiles] = useState(null);
     const [paramsSearch, setParamsSearch] = useState({});
     const [pagination, setPagination] = useState({});
     const [page, setPage] = useState(1);
     const debouncedSearchParamsTerm = useDebounce(paramsSearch, 500);
 
-    const { isPending } = useQuery({
+    const { refetch } = useQuery({
         queryKey: ['repoData', debouncedSearchParamsTerm, page],
         queryFn: () =>
         Api.get(props.endPoint, { params: { ...paramsSearch, page: page }}).then((res) => {
-            setList(res.data.data);
-            setPagination(res.data);
+            setLoading(true);
+                setList(res.data.data);
+                setPagination(res.data);
+            setLoading(false);
             return res.data
         }),
     })
-    console.log(isPending)
+    
     async function loadData() {}
     
     async function handleSubmit (values: any) {
@@ -79,7 +83,7 @@ export default function Crud(props: any) {
 
     function handleList(item: any) {
         setView('list');
-        loadData(); 
+        refetch();
         console.log(item)       
     }
    
@@ -130,14 +134,17 @@ export default function Crud(props: any) {
                 {view === 'list' && 
                     <>
                         {props.FormSearch && <props.FormSearch params={paramsSearch} setParams={setParamsSearch}  />}
+                        {loading && <Loading />}
                         <Grid 
                             titleBtnEdit={''} 
                             enableBtnEdit={false} 
                             enableBtnDelete={false} 
                             handleNew={function (): void {
                                 throw new Error('Function not implemented.');
-                            } } {...props}
+                            } } 
+                            {...props}
                             list={list}
+                            loadData={refetch}
                             handleEdit={handleEdit}
                             handleDelete={handleDelete}
                         />

@@ -44,7 +44,7 @@ export default function Grid(props: DataProps) {
             <TableBody>
                 {props.list && props.list.map((item) => (
                     <TableRow key={item.id} className="bg-gray-100 even:bg-white">
-                        {props.fieldsHtml && <FieldsHtml {...props} item={item}  />}
+                        {props.fieldsHtml && <FieldsHtml {...props} item={item} />}
                         {!props.fieldsHtml && 
                             <>
                                 {props.fields.map(i => (

@@ -5,6 +5,7 @@ import SelectInputs from '../../components/form/form-elements/SelectInputs';
 // import ToggleSwitch from '../../components/form/form-elements/ToggleSwitch';
 import Switch from '../../components/form/switch/Switch';
 
+
 type DataProps = {
   Field: ReactElement | any;
   ErrorMessage: ReactElement | any;
@@ -60,6 +61,7 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
 
 export default function MatriculasPages() {
     return (
+        <>
         <Crud
             title="Matrículas"
             endPoint="matriculas"
@@ -74,23 +76,29 @@ export default function MatriculasPages() {
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'aluno_id', label: 'Aluno' },
                 { name: 'turma_id', label: 'Turma' },
-                { name: 'turma_id', label: 'Exibir Certificado p Aluno' },
+                { name: 'turma_id', label: 'Exibir Certificado do Aluno' },
                 { name: 'turma_id', label: 'Certificado' },
             ]}
             
-              fieldsHtml={({ item }: any) => (
+            fieldsHtml={({ item, loadData }: any) => (
                 <>
                     <td>{item.id}</td>
                     <td>{item.aluno.nome}</td>
                     <td>{item.turma.nome}</td><td>
                         <Switch
-                            label="Ativo"
-                            defaultChecked={true}
-                            onChange={e => alert(e)}
+                            label={item.exibir_certificado_aluno === 'ativo' ? 'Ativo' : 'Inativo'}
+                            defaultChecked={item.exibir_certificado_aluno === 'ativo' ? true : false}
+                            onChange={async (status: boolean) => {
+                                await Api.put(`matriculas/${item.id}`, {
+                                    exibir_certificado_aluno: status ? 'ativo' : 'inativo'
+                                })
+                                loadData()
+                            }}
                         />
                     </td>
                     <td>
-                        <button className='p-2 bg-green-500'>Gerar Certificado</button>
+                        <a target='_blank' href={`https://api.itcd.org.br/certificado/${item.id}`} 
+                            className='p-2 rounded-2xl text-green-900 bg-green-300'>Gerar Certificado</a>
                     </td>
                 </>
             )}
@@ -113,6 +121,8 @@ export default function MatriculasPages() {
             showSort={false}
             showTotal={false} 
             showViewHistory={false}
-            showViewAlterStatus={false}        />
+            showViewAlterStatus={false}        
+        />
+        </>
     );
 }

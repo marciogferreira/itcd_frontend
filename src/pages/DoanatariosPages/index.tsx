@@ -64,10 +64,10 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
 export default function DonatariosPages() {
     return (
         <Crud
-            title="Donatários"
+            title="Doações"
             endPoint="donatarios"
             searchFieldName='search'
-            desc="Cadastro de Donatários"
+            desc="Cadastro de Doações"
             emptyObject={{
                 nome_diretor: '',
                 contato_diretor: '',

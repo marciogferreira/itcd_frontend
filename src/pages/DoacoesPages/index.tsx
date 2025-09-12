@@ -173,10 +173,10 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
 export default function TurmasPages() {
     return (
         <Crud
-            title="Doações"
+            title="Recebimentos"
             endPoint="doacoes"
             searchFieldName='search'
-            desc="Cadastro de Doações"
+            desc="Cadastro de Recebimentos"
             emptyObject={{
                 doador_id: '',
                 data_recebimento: '',

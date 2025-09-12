@@ -95,18 +95,20 @@ export default function Home() {
                       <hr />
                       <div className="flex justify-between">
                         <div>
-                          <h4 className="mt-2 border p-2 rounded-2xl  text-gray-800 text-sm dark:text-white/90">
+                          <h4 className="mt-2 border p-2 rounded-2xl  text-gray-800 bg-gray-200 text-sm dark:text-white/90">
                             <a href={item.turma.curso.link} target="_blank">
                               Acessar Curso
                             </a>
                           </h4>
                         </div>
                         <div>
-                          <h4 className="mt-2 border p-2 rounded-2xl text-gray-800 text-sm dark:text-white/90">
-                            <a href={item.turma.curso.link} target="_blank">
-                              Ver Certificado
-                            </a>
-                          </h4>
+                          {item.exibir_certificado_aluno === 'ativo' && 
+                            <h4 className="mt-2 border p-2 rounded-2xl text-gray-800 bg-green-200 text-sm dark:text-white/90">
+                              <a href={`https://api.itcd.org.br/certificado/${item.id}`} target="_blank">
+                                Ver Certificado
+                              </a>
+                            </h4>
+                          }
                         </div>
                       </div>
 

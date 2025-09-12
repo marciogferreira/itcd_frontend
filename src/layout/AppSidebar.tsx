@@ -64,8 +64,8 @@ const navItems: NavItem[] = [
     icon: <PageIcon />,
     subItems: [
       { name: "Doadores", path: "/doadores", pro: false },
+      { name: "Recebimentos", path: "/recebimentos", pro: false },
       { name: "Doações", path: "/doacoes", pro: false },
-      { name: "Donatários", path: "/donatarios", pro: false },
     ],
   },
   {

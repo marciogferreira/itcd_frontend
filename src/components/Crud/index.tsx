@@ -136,26 +136,32 @@ export default function Crud(props: any) {
                 {view === 'list' && 
                     <>
                         {props.FormSearch && <props.FormSearch params={paramsSearch} setParams={setParamsSearch}  />}
-                        {loading && <Loading />}
-                        <Grid 
-                            titleBtnEdit={''} 
-                            enableBtnEdit={false} 
-                            enableBtnDelete={false} 
-                            handleNew={function (): void {
-                                throw new Error('Function not implemented.');
-                            } } 
-                            {...props}
-                            list={list}
-                            loadData={refetch}
-                            handleEdit={handleEdit}
-                            handleDelete={handleDelete}
-                        />
-                        <Pagination
-                            data={pagination}                            
-                            onChange={(page: any) => {
-                                setPage(page)
-                            }} 
-                        />
+                        {loading 
+                            ? 
+                                <Loading /> 
+                            :
+                            <>
+                                <Grid 
+                                    titleBtnEdit={''} 
+                                    enableBtnEdit={false} 
+                                    enableBtnDelete={false} 
+                                    handleNew={function (): void {
+                                        throw new Error('Function not implemented.');
+                                    } } 
+                                    {...props}
+                                    list={list}
+                                    loadData={refetch}
+                                    handleEdit={handleEdit}
+                                    handleDelete={handleDelete}
+                                />
+                                <Pagination
+                                    data={pagination}                            
+                                    onChange={(page: any) => {
+                                        setPage(page)
+                                    }} 
+                                />
+                            </>
+                        }
                     </>
                 }
                 {view === 'new' || view === 'edit' ? 

@@ -9,8 +9,10 @@ import {
   ChevronDownIcon,
   GridIcon,
   HorizontaLDots,
+  // MoreDotIcon,
   //ListIcon,
   PageIcon,
+  // PlugInIcon,
   UserIcon,
   // PieChartIcon,
   // PlugInIcon,
@@ -31,14 +33,14 @@ type NavItem = {
 const navItemsAlunos: NavItem[] = [
     {
       icon: <GridIcon />,
-      name: "Painel",
+      name: "Meus Cursos",
       path: "/",
     },
     {
-      icon: <GridIcon />,
-      name: "Certificados",
-      path: "/certificados",
-    },
+      icon: <UserIcon />,
+      name: "Perfil",
+      path: "/profile",
+    }
 ];
 const navItems: NavItem[] = [
   
@@ -82,20 +84,6 @@ const navItems: NavItem[] = [
     name: "Usuários",
     path: "/usuarios"},
  
-  // {
-  //   name: "M. R. de Equipamentos",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Alunos", path: "/alunos", pro: false },
-  //   ],
-  // },
-  // {
-  //   name: "M. D. de Resíduos",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Alunos", path: "/alunos", pro: false },
-  //   ],
-  // },
   
   // {
   //   icon: <UserIcon />,

@@ -40,18 +40,18 @@ export default function AuthProvider({ children }: PropsData) {
 
     function signOut() {
         setIsLogged(false);
-        Util.removeToken()
+        Util.removeToken();
     }
 
     async function getMe() {
         const response = await Api.post('me');
-        setUser(response.data)
+        setUser({...response.data})
     }
 
     useEffect(() => {
         if(Util.getToken()) {
-            getMe();
             setIsLogged(true);
+            getMe();
         }
     }, []);
     

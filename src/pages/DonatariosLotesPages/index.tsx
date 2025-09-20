@@ -14,6 +14,7 @@ import FormDonatariosItens from './FormDonatariosItens';
 import Message from '../../config/Message';
 import { useNavigate } from 'react-router';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import { useOptions } from '../../hooks/useApi';
 
 
 type DataProps = {
@@ -26,8 +27,8 @@ type DataProps = {
 const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
     
     const [lista, setLista] = useState([]);
-    const [donatarios, setDonatarios] = useState([]);
     
+    const { data: donatarios } = useOptions('donatarios');
     async function getLista() {
         if(values.id) {
             const response = await Api.get(`donatarios-itens?donatario_ordem_id=${values.id}`);
@@ -35,12 +36,7 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
         }
     }
 
-      async function getDonatarios() {
-        const response = await Api.get('donatarios/options')
-        setDonatarios(response.data.data)
-    }
-
-     async function handleDeleteItem(id: number) {
+    async function handleDeleteItem(id: number) {
         await Message.confirmation("Deseja deletar este item?", async () => {
             await Api.delete(`donatarios-itens/${id}`);
             Message.success("Item Deletado com Sucesso!")
@@ -50,7 +46,6 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
 
     useEffect(() => {
         getLista()
-        getDonatarios()
     }, []);
 
     return (
@@ -134,13 +129,18 @@ export default function DonatariosLotesPages() {
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'nome_diretor', label: 'Nome do Diretor' },
-                { name: 'contato_diretor', label: 'Contato' }
+                { name: 'contato_diretor', label: 'Contato' },
+                { name: 'contato_diretor', label: 'Termo' },
             ]}
               fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>
                     <td>{item.donatario.nome_diretor}</td>
                     <td>{item.donatario.contato_diretor}</td>
+                     <td>
+                        <a target='_blank' href={`https://api.itcd.org.br/termo-doacao/${item.id}`} 
+                            className='p-2 rounded-2xl text-green-900 bg-green-300'>Gerar Termo</a>
+                    </td>
                 </>
             )}
            

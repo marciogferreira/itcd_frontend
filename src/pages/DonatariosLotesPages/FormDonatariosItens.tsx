@@ -62,13 +62,7 @@ export default function FormDonatariosItens({ donatario_ordem_id, loadData }: an
                             </span>
                         </div>
 
-                        <div className='mb-3'>
-                            <Label>Observação</Label>
-                            <Input type="text" id="observacao" name="observacao" />
-                            <span className="error">
-                                <ErrorMessage name="observacao" component="span" />
-                            </span>
-                        </div>
+                    
 
                         <div className='mb-3'>
                             <br />

@@ -31,6 +31,8 @@ import DoacoesPages from "./pages/DoacoesPages";
 import DescartesPages from "./pages/DescartesPages";
 import FormElements from "./pages/Forms/FormElements";
 import DonatariosPages from "./pages/DoanatariosPages";
+import DonatariosLotesPages from "./pages/DonatariosLotesPages";
+import TiposEquipamentosPages from "./pages/TiposEquipamentosPages";
 
 export default function App() {
   
@@ -79,13 +81,18 @@ export default function App() {
             <Route path="/matriculas" element={<MatriculasPages />} />
             <Route path="/eventos" element={<EventosPages />} />
             <Route path="/usuarios" element={<UsuariosPages />} />
+
+            <Route path="/tipos-equipamentos" element={<TiposEquipamentosPages />} />
             
 
             {/*M. R. de Equipamentos*/}
 
             <Route path="/doadores" element={<DoadoresPages />} />
             <Route path="/recebimentos" element={<DoacoesPages />} />
+            
             <Route path="/doacoes" element={<DonatariosPages />} />
+            <Route path="/doacoes-lotes" element={<DonatariosLotesPages />} />
+
             <Route path="/descartes" element={<DescartesPages />} />
 
             {/* Others Page */}

@@ -3,8 +3,8 @@ import Util from './Util';
 import Message from './Message';
 
 const Api = axios.create({
-    // baseURL: 'http://localhost:8000/api/',
-    baseURL: 'https://api.itcd.org.br/api/',
+    baseURL: 'http://localhost:8000/api/',
+    // baseURL: 'https://api.itcd.org.br/api/',
 });
 
 Api.interceptors.request.use(function (config: any) {

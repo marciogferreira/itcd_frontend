@@ -4,6 +4,7 @@ import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
+import { useOptions } from '../../hooks/useApi';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -13,22 +14,8 @@ type DataProps = {
 }
 
 const FormWrapper = ({ ErrorMessage}: DataProps) => {
-    
-    const [cursos, setCursos] = useState([]);
 
-   
-    async function getCursos() {
-        const response = await Api.get('cursos/options')
-        console.log(response.data.data)
-        setCursos(response.data.data)
-    }
-
-    useEffect(() => {
-        getCursos()
-    }, []);
-
-    
-
+    const { data: cursos } = useOptions('cursos');   
     return (
         <>
             <div className='row'>

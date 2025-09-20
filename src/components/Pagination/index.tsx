@@ -7,7 +7,7 @@ export default function Pagination(props: any) {
     //     nextButtonText: 'Próxima',
     //     prevButtonText: 'Anterior'
     // };
-    console.log("Pagination", props)
+    
     return (
         <>
             <div className='flex justify-between' style={{ padding: '5px' }}>

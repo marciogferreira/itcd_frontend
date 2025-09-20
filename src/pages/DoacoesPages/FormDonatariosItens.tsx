@@ -4,19 +4,23 @@ import Input from "../../components/form/input/InputField";
 import { Button } from "react-bootstrap";
 import Api from "../../config/Api";
 import Message from "../../config/Message";
+import { useOptions } from "../../hooks/useApi";
+import SelectInputs from "../../components/form/form-elements/SelectInputs";
 
-type DataDonatarioItens = {
-    donatario_id: number;
+type DataDoacoesItens = {
+    doacao_id: number;
     equipamento: string;
     quantidade: number | string;
     observacao: string;
 }
 
-export default function FormDonatariosItens({ donatario_id, loadData }: any) {
+export default function FormDoacoesItens({ doacao_id, loadData }: any) {
 
-    async function handleSave(values: DataDonatarioItens, form: any) {
+    const { data: tiposEquipamentos } = useOptions('tipos-equipamentos');
+
+    async function handleSave(values: DataDoacoesItens, form: any) {
         try {
-            await Api.post('donatarios-itens', values);
+            await Api.post('doacoes-itens', values);
             Message.success("Item Salvo com Sucesso.")
             form.resetForm()
             loadData()
@@ -31,22 +35,22 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
         <>
             <Formik
                 initialValues={{
-                    donatario_id: donatario_id,
+                    doacao_id: doacao_id,
                     equipamento: '',
                     quantidade: '',
                     observacao: ''
                 }}
-                onSubmit={(values: DataDonatarioItens, form: any) => {
+                onSubmit={(values: DataDoacoesItens, form: any) => {
                     handleSave(values, form);
                 }}
             >
                 {({ handleSubmit }) => (
                     <>
                     <div className="grid md:grid-cols-4 gap-4">
-                        <Field type="hidden" id="donatario_id" name="donatario_id" />
+                        <Field type="hidden" id="doacao_id" name="doacao_id" />
+
                         <div className='mb-3'>
-                            <Label>Equipamento</Label>
-                            <Input type="text" id="equipamento" name="equipamento" />
+                            <SelectInputs options={tiposEquipamentos} label="Tipos de Equipamentos" name="equipamento" id="equipamento" />
                             <span className="error">
                                 <ErrorMessage name="equipamento" component="span" />
                             </span>

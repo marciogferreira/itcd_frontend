@@ -4,16 +4,19 @@ import Input from "../../components/form/input/InputField";
 import { Button } from "react-bootstrap";
 import Api from "../../config/Api";
 import Message from "../../config/Message";
+import SelectInputs from "../../components/form/form-elements/SelectInputs";
+import { useOptions } from "../../hooks/useApi";
 
 type DataDonatarioItens = {
-    donatario_id: number;
+    donatario_ordem_id: number;
     equipamento: string;
     quantidade: number | string;
     observacao: string;
 }
 
-export default function FormDonatariosItens({ donatario_id, loadData }: any) {
+export default function FormDonatariosItens({ donatario_ordem_id, loadData }: any) {
 
+    const { data: tiposEquipamentos } = useOptions('tipos-equipamentos');
     async function handleSave(values: DataDonatarioItens, form: any) {
         try {
             await Api.post('donatarios-itens', values);
@@ -31,7 +34,7 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
         <>
             <Formik
                 initialValues={{
-                    donatario_id: donatario_id,
+                    donatario_ordem_id: donatario_ordem_id,
                     equipamento: '',
                     quantidade: '',
                     observacao: ''
@@ -45,8 +48,7 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
                     <div className="grid md:grid-cols-4 gap-4">
                         <Field type="hidden" id="donatario_id" name="donatario_id" />
                         <div className='mb-3'>
-                            <Label>Equipamento</Label>
-                            <Input type="text" id="equipamento" name="equipamento" />
+                            <SelectInputs options={tiposEquipamentos} label="Tipos de Equipamentos" name="equipamento" id="equipamento" />
                             <span className="error">
                                 <ErrorMessage name="equipamento" component="span" />
                             </span>

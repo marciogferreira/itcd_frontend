@@ -68,7 +68,7 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
 
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className="mb-3">
-                        <Label>Recibo Digitalizado ou Termo de Recebimento</Label>
+                        <Label>Termo de Descartes</Label>
                         <Input type="file" id="recibo_digitalizado" name="recibo_digitalizado" />
                         <span className="error">
                             <ErrorMessage name="recibo_digitalizado" component="span" />

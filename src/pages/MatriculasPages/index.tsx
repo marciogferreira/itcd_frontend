@@ -4,6 +4,7 @@ import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
 // import ToggleSwitch from '../../components/form/form-elements/ToggleSwitch';
 import Switch from '../../components/form/switch/Switch';
+import { useOptions } from '../../hooks/useApi';
 
 
 type DataProps = {
@@ -15,26 +16,9 @@ type DataProps = {
 
 const FormWrapper = ({ ErrorMessage}: DataProps) => {
 
-    const [alunos, setAlunos] = useState([]);
-    const [turma, setTurmas] = useState([]);
-
-    async function getAlunos() {
-        const response = await Api.get('alunos/options')
-        setAlunos(response.data.data)
-    }
+    const { data: alunos } = useOptions('alunos');
+    const { data: turmas } = useOptions('turmas');
    
-    async function getTurmas() {
-        const response = await Api.get('turmas/options')
-        console.log(response.data.data)
-        setTurmas(response.data.data)
-    }
-
-    useEffect(() => {
-        getAlunos()
-        getTurmas()
-    }, []);
-
-    
 
     return (
         <>
@@ -48,7 +32,7 @@ const FormWrapper = ({ ErrorMessage}: DataProps) => {
                 </div>
 
                 <div className='mb-3'>
-                    <SelectInputs options={turma} label="Turma" name="turma_id" id="turma_id" />
+                    <SelectInputs options={turmas} label="Turma" name="turma_id" id="turma_id" />
                     <span className="error">
                         <ErrorMessage name="turma_id" component="span" />
                     </span>

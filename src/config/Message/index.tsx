@@ -10,8 +10,8 @@ const Message = {
     infor: (msg: string) => {
         swal("Oops!", msg, "info");
     },
-    confirmation: (msg: string, callback: () => void) => {
-        swal({
+    confirmation: async (msg: string, callback: () => void) => {
+        await swal({
           title: msg,
           text: "Confirme abaixo",
           icon: "warning",

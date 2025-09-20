@@ -5,6 +5,16 @@ import SelectInputs from '../../components/form/form-elements/SelectInputs';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
 import { Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router';
+import FormDoacoesItens from './FormDonatariosItens';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from "../../components/ui/table";
+import Message from '../../config/Message';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -13,17 +23,38 @@ type DataProps = {
   values: any;
 }
 
-const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
-    
+const FormWrapper = ({ ErrorMessage, setFieldValue, values }: DataProps) => {    
+
     const [doadores, setDoadores] = useState([]);
-   
+    const [lista, setLista] = useState([]);
+    
+    
+    async function getLista() {
+        const response = await Api.get(`doacoes-itens?doacao_id=${values.id}`);
+        setLista(response.data.data);
+        
+        const total = response.data.data.reduce((acum: any, currentValue: any) => {
+            return acum + Number(currentValue.quantidade)
+        }, 0)
+        setFieldValue('quantidade_equipamentos', total)
+    }
+    
     async function getDoadores() {
         const response = await Api.get('doadores/options')
         setDoadores(response.data.data)
     }
+    
+    async function handleDeleteItem(id: number) {
+        await Message.confirmation("Deseja deletar este item?", async () => {
+            await Api.delete(`doacoes-itens/${id}`);
+            Message.success("Item Deletado com Sucesso!")
+            getLista();
+        });
+    }
 
     useEffect(() => {
         getDoadores()
+        getLista()
     }, []);  
 
     return (
@@ -55,30 +86,13 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
 
                     <div className='mb-3'>
                         <Label>Quantidade de Equipamentos</Label>
-                        <Input type="number" id="quantidade_equipamentos" name="quantidade_equipamentos" />
+                        <Input type="number" disabled id="quantidade_equipamentos" name="quantidade_equipamentos" />
                         <span className="error">
                             <ErrorMessage name="quantidade_equipamentos" component="span" />
                         </span>
                     </div>
 
-                    <div className='mb-3'>
-                       
-                       <SelectInputs 
-                            options={[
-                                { label: "Desktop", value: 'Desktop'  },
-                                { label: "NoteBooks", value: 'NoteBooks'  },
-                                { label: "Tablets", value: 'tablets'  },
-                                { label: "Celulares", value: 'celulares'  },
-                                { }
-                            ]} 
-                            label="Tipos de Equipamentos" 
-                            name="tipos_equipamentos"
-                            id="tipos_equipamentos" 
-                        />
-                        <span className="error">
-                            <ErrorMessage name="tipos_equipamentos" component="span" />
-                        </span>
-                    </div>
+                    
                 </div>
                 <br />          
                 <hr />
@@ -160,10 +174,36 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
                         </div>
 
                     </div>
-
+                    
+                    <FormDoacoesItens doacao_id={values.id} loadData={getLista} />
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell>Seq.</TableCell>
+                                <TableCell>Equipamento</TableCell>
+                                <TableCell>Quantidade</TableCell>
+                                <TableCell>Observação</TableCell>
+                                <TableCell>Ações</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {lista && lista.map((item: any, index: number) => (
+                                <TableRow>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{item.equipamento}</TableCell>
+                                    <TableCell>{item.quantidade}</TableCell>
+                                    <TableCell>{item.observacao}</TableCell>
+                                    <TableCell>
+                                        <button onClick={() => handleDeleteItem(item.id)}>Excluir</button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </>
+                }  
 
-                }                
+                              
 
             </div>           
         </>
@@ -171,9 +211,17 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
 }
 
 export default function TurmasPages() {
+    const navigate = useNavigate()
     return (
         <Crud
-            title="Recebimentos"
+            BtnGrid={() => (
+                <>
+                    <button onClick={() => navigate('/doadores')} className='float-right flex w-full items-center justify-center gap-2 rounded-md border text-white border-green-600 bg-green-600 px-4 py-2 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto'>
+                        Doadores
+                    </button>
+                </>
+            )}
+            title="Lotes de Recebimentos"
             endPoint="doacoes"
             searchFieldName='search'
             desc="Cadastro de Recebimentos"
@@ -182,7 +230,7 @@ export default function TurmasPages() {
                 data_recebimento: '',
                 peso: '',
                 quantidade_equipamentos: 0,
-                tipos: '',
+                tipos_equipamentos: '',
                 responsavel_recebimento: '',
                 
                 quantidade_aprovados: '',
@@ -215,8 +263,8 @@ export default function TurmasPages() {
                     <td>{item.doador.nome}</td>
                     <td>{item.peso}</td>
                     <td>{item.quantidade_equipamentos}</td>
-                    <td>{item.quantidade_equipamentos}</td>
-                    <td>{item.quantidade_equipamentos}</td>
+                    <td>{item.quantidade_aprovados}</td>
+                    <td>{item.quantidade_rejeitados}</td>
                     <td>{item.responsavel_recebimento}</td>
                 </>
             )}
@@ -237,3 +285,4 @@ export default function TurmasPages() {
             showViewAlterStatus={false}        />
     );
 }
+

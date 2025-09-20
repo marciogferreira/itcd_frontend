@@ -1,7 +1,7 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
-import Input, { InputCustom } from '../../components/form/input/InputField';
+import Input from '../../components/form/input/InputField';
 
 
 type DataProps = {
@@ -11,7 +11,7 @@ type DataProps = {
   values: any;
 }
 
-const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
+const FormWrapper = ({ ErrorMessage }: DataProps) => {
     return (
         <>
             <div className='row'>

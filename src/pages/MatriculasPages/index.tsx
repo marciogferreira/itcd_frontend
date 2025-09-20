@@ -1,5 +1,5 @@
 import Crud from '../../components/Crud';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
 // import ToggleSwitch from '../../components/form/form-elements/ToggleSwitch';

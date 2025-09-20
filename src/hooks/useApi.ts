@@ -2,14 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import Api from "../config/Api";
 import { useEffect, useState } from "react";
 
-
-interface UseOptionsResult<T> {
-  data: T[];
-  pending: boolean;
-  error: string | null;
-}
-
-
 export function useOptions(endPoint: string, params?: any) {
 
     const [data, setData] = useState([]);

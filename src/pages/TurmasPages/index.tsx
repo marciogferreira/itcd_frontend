@@ -1,6 +1,5 @@
 import Crud from '../../components/Crud';
-import { ReactElement, useEffect, useState } from 'react';
-import Api from '../../config/Api';
+import { ReactElement } from 'react';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';

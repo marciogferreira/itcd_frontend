@@ -60,14 +60,7 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
                             </span>
                         </div>
 
-                        <div className='mb-3'>
-                            <Label>Observação</Label>
-                            <Input type="text" id="observacao" name="observacao" />
-                            <span className="error">
-                                <ErrorMessage name="observacao" component="span" />
-                            </span>
-                        </div>
-
+                      
                         <div className='mb-3'>
                             <br />
                             <Button onClick={() => handleSubmit()} className="bg-green-600 text-white rounded-md p-2" variant="success">Salvar</Button>

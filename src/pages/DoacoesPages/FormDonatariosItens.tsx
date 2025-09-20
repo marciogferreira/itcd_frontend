@@ -64,13 +64,7 @@ export default function FormDoacoesItens({ doacao_id, loadData }: any) {
                             </span>
                         </div>
 
-                        <div className='mb-3'>
-                            <Label>Observação</Label>
-                            <Input type="text" id="observacao" name="observacao" />
-                            <span className="error">
-                                <ErrorMessage name="observacao" component="span" />
-                            </span>
-                        </div>
+                      
 
                         <div className='mb-3'>
                             <br />

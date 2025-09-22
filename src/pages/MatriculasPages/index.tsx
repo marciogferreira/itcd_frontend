@@ -1,7 +1,7 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Api from '../../config/Api';
-import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import SelectInputs, { SelectInputsCustom } from '../../components/form/form-elements/SelectInputs';
 // import ToggleSwitch from '../../components/form/form-elements/ToggleSwitch';
 import Switch from '../../components/form/switch/Switch';
 import { useOptions } from '../../hooks/useApi';
@@ -63,6 +63,38 @@ export default function MatriculasPages() {
                 { name: 'turma_id', label: 'Exibir Certificado do Aluno' },
                 { name: 'turma_id', label: 'Certificado' },
             ]}
+
+             FormSearch={({ params, setParams }: any) => {
+                const { data: turmas } = useOptions('turmas')
+                const { data: alunos } = useOptions('alunos')
+                return (
+                    <>
+                        <div className="flex gap-5">
+                            <div className='w-[50%]'>
+                                <div className='mb-3'>
+                                    <SelectInputsCustom
+                                        placeholder="Selecione"
+                                        onchange={(value: any) => setParams({...params, aluno_id: value})} 
+                                        value={params.aluno_id} options={alunos} label="Aluno" name="aluno_id" id="aluno_id" 
+                                    />
+                                </div>
+                            </div>
+                            <div className='w-[50%]'>
+                                <div className='mb-3'>
+                                    <SelectInputsCustom
+                                        placeholder="Selecione"
+                                        onchange={(value: any) => setParams({...params, turma_id: value})} 
+                                        value={params.turma_id} options={turmas} label="Turma" name="turma_id" id="turma_id" 
+                                    />
+                                </div>
+                            </div>
+                            <div className='w-[50%]'>
+                              
+                            </div>
+                        </div>
+                    </>
+                )
+            }}
             
             fieldsHtml={({ item, loadData }: any) => (
                 <>

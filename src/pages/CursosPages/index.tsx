@@ -26,7 +26,7 @@ const FormWrapper = ({ ErrorMessage, values, Field, setFieldValue }: DataProps) 
 
                     <div className='mb-3'>
                         <Label>Carga Horária</Label>
-                        <Input type="text" id="carga_horaria" name="carga_horaria" />
+                        <Input type="number" id="carga_horaria" name="carga_horaria" />
                         <span className="error">
                             <ErrorMessage name="carga_horaria" component="span" />
                         </span>

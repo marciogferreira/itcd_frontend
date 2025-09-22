@@ -25,3 +25,27 @@ export default function SelectInputs({ options, label, id, name }: any) {
     
   );
 }
+
+
+export function SelectInputsCustom({ options, label, id, name, onchange, value, placeholder }: any) {
+  
+  return (
+    
+      <div className="space-y-6">
+        <div>
+          <Label>{label}</Label>
+          <Select
+            value={value}
+            onChange={onchange}
+            id={id}
+            name={name}
+            options={options}
+            placeholder={placeholder}
+            className="dark:bg-dark-900"
+          />
+        </div>
+      </div>
+    
+  );
+}
+

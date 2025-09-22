@@ -1,8 +1,8 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
-import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import SelectInputs, { SelectInputsCustom } from '../../components/form/form-elements/SelectInputs';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Input, { InputCustom } from '../../components/form/input/InputField';
 import { useOptions } from '../../hooks/useApi';
 
 type DataProps = {
@@ -50,6 +50,36 @@ export default function TurmasPages() {
             emptyObject={{
                 nome: '',
                 curso_id: '',
+            }}
+            FormSearch={({ params, setParams }: any) => {
+                const { data: cursos } = useOptions('cursos')
+                return (
+                    <>
+                        <div className="flex gap-5">
+                            <div className='w-[50%]'>
+                                <div className='mb-3'>
+                                    <Label>Nome</Label>
+                                    <InputCustom 
+                                        placeholder='Filtrar por Nome' 
+                                        type="text" id="nome" name="nome" 
+                                        onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                                </div>
+                            </div>
+                            <div className='w-[50%]'>
+                                <div className='mb-3'>
+                                    <SelectInputsCustom 
+                                        placeholder="Selecione"
+                                        onchange={(value: any) => setParams({...params, curso_id: value})} 
+                                        value={params.curso_id} options={cursos} label="Curso" name="curso_id" id="curso_id" 
+                                    />
+                                </div>
+                            </div>
+                            <div className='w-[50%]'>
+                              
+                            </div>
+                        </div>
+                    </>
+                )
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },

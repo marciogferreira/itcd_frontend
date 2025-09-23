@@ -2,6 +2,8 @@ import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
 import Input, { InputCustom } from '../../components/form/input/InputField';
+import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import Util from '../../config/Util';
 
 
 type DataProps = {
@@ -89,14 +91,14 @@ const FormWrapper = ({ ErrorMessage, values, setFieldValue }: DataProps) => {
 
                 <br />
                 <div className="grid md:grid-cols-3 gap-4">
+
                     <div className='mb-3'>
-                        <Label>Tipo de Logradouro</Label>
-                        <Input type="text" id="tipo_logradouro" name="tipo_logradouro" />
+                        <SelectInputs options={Util.tiposLogradouros()} label="Tipo Logradouro" name="tipo_logradouro" id="tipo_logradouro" />
                         <span className="error">
                             <ErrorMessage name="tipo_logradouro" component="span" />
                         </span>
                     </div>
-
+                    
                     <div className='mb-3'>
                         <Label>Logradouro</Label>
                         <Input type="text" id="logradouro" name="logradouro" />

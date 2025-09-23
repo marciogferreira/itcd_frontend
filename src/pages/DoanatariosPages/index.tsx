@@ -2,6 +2,8 @@ import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
 import Input from '../../components/form/input/InputField';
+import SelectInputs from '../../components/form/form-elements/SelectInputs';
+import Util from '../../config/Util';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -15,6 +17,13 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
     return (
         <>
             <div className='row'>
+                <div className="mb-3">
+                    <Label>Instituição</Label>
+                    <Input type="text" id="instituicao" name="instituicao" />
+                    <span className="error">
+                        <ErrorMessage name="instituicao" component="span" />
+                    </span>
+                </div>
                 <div className="grid md:grid-cols-3 gap-4">
                     <div className="mb-3">
                         <Label>Nome do Diretor</Label>
@@ -32,40 +41,40 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
                         </span>
                     </div>
 
-                    <div className="mb-3">
-                        <Label>Termo de Doação</Label>
-                        <Input type="text" id="termo_doacao" name="termo_doacao" />
+                </div>
+                <hr style={{ marginTop: 10, marginBottom: 10 }} />
+                <div className="grid md:grid-cols-3 gap-4">
+                    <div className='mb-3'>
+                        <SelectInputs options={Util.tiposLogradouros()} label="Tipo Logradouro" name="tipo_logradouro" id="tipo_logradouro" />
                         <span className="error">
-                            <ErrorMessage name="termo_doacao" component="span" />
+                            <ErrorMessage name="tipo_logradouro" component="span" />
                         </span>
                     </div>
-                </div>
+                    <div className="mb-3">
+                        <Label>Logradouro</Label>
+                        <Input type="text" id="logradouro" name="logradouro" />
+                        <span className="error">
+                            <ErrorMessage name="logradouro" component="span" />
+                        </span>
+                    </div>
 
-                 <div className="grid md:grid-cols-3 gap-4">
-                <div className="mb-3">
-                    <Label>Logradouro</Label>
-                    <Input type="text" id="logradouro" name="logradouro" />
-                    <span className="error">
-                        <ErrorMessage name="logradouro" component="span" />
-                    </span>
-                </div>
+                    <div className="mb-3">
+                        <Label>Número</Label>
+                        <Input type="text" id="numero" name="numero" />
+                        <span className="error">
+                            <ErrorMessage name="numero" component="span" />
+                        </span>
+                    </div>
 
-                <div className="mb-3">
-                    <Label>Número</Label>
-                    <Input type="text" id="numero" name="numero" />
-                    <span className="error">
-                        <ErrorMessage name="numero" component="span" />
-                    </span>
-                </div>
-
-                <div className="mb-3">
-                    <Label>Complemento</Label>
-                    <Input type="text" id="complemento" name="complemento" />
-                    <span className="error">
-                        <ErrorMessage name="complemento" component="span" />
-                    </span>
-                </div>
+                    <div className="mb-3">
+                        <Label>Complemento</Label>
+                        <Input type="text" id="complemento" name="complemento" />
+                        <span className="error">
+                            <ErrorMessage name="complemento" component="span" />
+                        </span>
+                    </div>
                  </div>
+                 <hr style={{ marginTop: 10, marginBottom: 10 }} />
 
               
                <div className="grid md:grid-cols-3 gap-4">
@@ -96,7 +105,7 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
 
                </div>
 
-   <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
 
                 <div className="mb-3">
                     <Label>Telefone</Label>
@@ -141,21 +150,34 @@ export default function DonatariosPages() {
             searchFieldName='search'
             desc="Cadastro de Doações"
             emptyObject={{
+                instituicao: '',
                 nome_diretor: '',
                 contato_diretor: '',
-                termo_doacao: '',
+
+                tipo_logradouro: '',
+                logradouro: '',
+                numero: '',
+                complemento: '',
+                estado: '',
+                cidade: '',
+                bairro: '',
+                telefone: '',
+
+                cnpj: '',
+                email: '',
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
+                { name: 'instituicao', label: 'Instituição' },
                 { name: 'nome_diretor', label: 'Nome do Diretor' },
                 { name: 'contato_diretor', label: 'Contato' },
             ]}
            
             validation={(Yup: object | any) => {
                 return {
+                    instituicao: Yup.string().required('Campo obrigatório'),
                     nome_diretor: Yup.string().required('Campo obrigatório'),
-                    contato_diretor: Yup.string().required('Campo obrigatório'),
-                    termo_doacao: Yup.string().required('Campo obrigatório'),
+                    contato_diretor: Yup.string().required('Campo obrigatório')
                 };
             } }
             FormWrapper={FormWrapper} 

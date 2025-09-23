@@ -128,13 +128,15 @@ export default function DonatariosLotesPages() {
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
+                { name: 'instituicao', label: 'Instituição' },
                 { name: 'nome_diretor', label: 'Nome do Diretor' },
                 { name: 'contato_diretor', label: 'Contato' },
-                { name: 'contato_diretor', label: 'Termo' },
+                { name: 'contato_diretor', label: 'Termo de Doação' },
             ]}
               fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>
+                    <td>{item.donatario.instituicao}</td>
                     <td>{item.donatario.nome_diretor}</td>
                     <td>{item.donatario.contato_diretor}</td>
                      <td>

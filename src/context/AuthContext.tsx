@@ -36,11 +36,14 @@ export default function AuthProvider({ children }: PropsData) {
     function signIn(token: string) {
         setIsLogged(true);
         Util.setToken(token)
+        getMe()
     }
 
     function signOut() {
-        setIsLogged(false);
         Util.removeToken();
+        setIsLogged(false);
+        setUser(null);
+        // Util.redirect()
     }
 
     async function getMe() {

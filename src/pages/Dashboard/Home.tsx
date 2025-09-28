@@ -24,6 +24,8 @@ export default function Home() {
     eventos: 0,
   })
 
+  console.log("user", user)
+
   async function getTotais() {
     try {
       setLoading(true)
@@ -57,7 +59,7 @@ export default function Home() {
   useEffect(() => {
     getTotais()
     getTurmas()
-  }, [])
+  }, [user])
 
   return (
     <>

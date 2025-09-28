@@ -7,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signOut } = useAuth()
+  
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
@@ -14,6 +15,7 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
   return (
     <div className="relative">
       <button
@@ -87,7 +89,7 @@ export default function UserDropdown() {
               Perfil
             </DropdownItem>
           </li>
-          <li>
+          {/* <li>
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
@@ -111,8 +113,8 @@ export default function UserDropdown() {
               </svg>
               Configurações de Conta
             </DropdownItem>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
@@ -136,7 +138,7 @@ export default function UserDropdown() {
               </svg>
               Suporte
             </DropdownItem>
-          </li>
+          </li> */}
         </ul>
         <button
           onClick={signOut}

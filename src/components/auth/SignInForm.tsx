@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
 import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -13,8 +11,7 @@ import Message from "../../config/Message";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const { setLoading, signIn } = useAuth()
+    const { setLoading, signIn } = useAuth()
   
   async function handleLogin(values: any) {
      try {
@@ -163,7 +160,7 @@ export default function SignInForm() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
+                  {/* <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Checkbox checked={isChecked} onChange={setIsChecked} />
                       <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
@@ -176,7 +173,7 @@ export default function SignInForm() {
                     >
                       Esqueceu sua senha?
                     </Link>
-                  </div>
+                  </div> */}
                   <div>
                     <Button onClick={handleSubmit} className="w-full" size="sm">
                       Acessar
@@ -186,7 +183,7 @@ export default function SignInForm() {
               )}
             </Formik>
 
-            <div className="mt-5">
+            {/* <div className="mt-5">
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Não tem uma conta? {""}
                 <Link
@@ -196,7 +193,7 @@ export default function SignInForm() {
                   Cadastre-se
                 </Link>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

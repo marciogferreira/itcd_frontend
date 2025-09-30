@@ -33,6 +33,7 @@ import FormElements from "./pages/Forms/FormElements";
 import DonatariosPages from "./pages/DoanatariosPages";
 import DonatariosLotesPages from "./pages/DonatariosLotesPages";
 import TiposEquipamentosPages from "./pages/TiposEquipamentosPages";
+import ImportacaoDados from "./pages/ImportacaoDados";
 
 export default function App() {
   
@@ -97,11 +98,13 @@ export default function App() {
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
+            <Route path="/importacoes" element={<ImportacaoDados />} />
+            
             {/* <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} /> */}
 
             {/* Forms */}
-            <Route path="/form-elements" element={<FormElements />} />
+            {/* <Route path="/form-elements" element={<FormElements />} /> */}
 
             {/* Tables */}
             {/* <Route path="/basic-tables" element={<BasicTables />} /> */}

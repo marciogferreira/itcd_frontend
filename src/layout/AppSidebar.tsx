@@ -77,6 +77,7 @@ const navItems: NavItem[] = [
     icon: <PageIcon />,
     subItems: [
       { name: "Descartes", path: "/descartes", pro: false },
+      { name: "Importações", path: "/importacoes", pro: false },
     ],
     
   },

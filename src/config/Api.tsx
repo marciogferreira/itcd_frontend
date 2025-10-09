@@ -3,8 +3,8 @@ import Util from './Util';
 import Message from './Message';
 
 const Api = axios.create({
-    baseURL: 'http://localhost:8000/api/',
-    // baseURL: 'https://api.itcd.org.br/api/',
+    // baseURL: 'http://localhost:8000/api/',
+    baseURL: 'https://api.itcd.org.br/api/',
 });
 
 Api.interceptors.request.use(function (config: any) {
@@ -25,6 +25,10 @@ Api.interceptors.response.use(function (response: any) {
     if(error.response) {
       const { message } = error.response.data;
       const errorMessage = error.response.data.error;
+
+      if(error.response.status == 422) {
+        Message.validation(error);
+      }
       
       if(message == 'Unauthenticated.' || message == 'Unauthenticated') {
         Util.removeToken();
@@ -41,9 +45,10 @@ Api.interceptors.response.use(function (response: any) {
       }
     }
 
+
     if(error.response.status === 401) {
       Util.removeToken();
-      Util.redirect();
+      // Util.redirect();
     }
     
     return Promise.reject(error);

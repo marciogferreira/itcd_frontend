@@ -99,7 +99,7 @@ export default function EventosPages() {
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
-                { name: 'nome', label: 'Curso' },
+                { name: 'nome', label: 'Nome' },
                 { name: 'data', label: 'Data' },
                 { name: 'localizacao', label: 'Localização' },
                 { name: 'responsavel', label: 'Responsável' },

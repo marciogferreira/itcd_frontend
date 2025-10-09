@@ -50,6 +50,11 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
 
     return (
         <>
+            <div className='text-right'>
+                {values.id && 
+                    <h4>Nº do lote: {values.id.toString().padStart(4, '0')}</h4>
+                }
+            </div>
             <div className='row'>
                 
                 <div className="grid md:grid-cols-3 gap-4">
@@ -95,7 +100,7 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
                                 <TableCell>{item.quantidade}</TableCell>
                                 <TableCell>{item.observacao}</TableCell>
                                 <TableCell>
-                                    <button onClick={() => handleDeleteItem(item.id)}>Excluir</button>
+                                    <button type='button'   onClick={() => handleDeleteItem(item.id)}>Excluir</button>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -128,6 +133,7 @@ export default function DonatariosLotesPages() {
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
+                { name: 'numero_lote', label: 'Nº Lote' },
                 { name: 'instituicao', label: 'Instituição' },
                 { name: 'nome_diretor', label: 'Nome do Diretor' },
                 { name: 'contato_diretor', label: 'Contato' },
@@ -136,6 +142,7 @@ export default function DonatariosLotesPages() {
               fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>
+                    <td>{item.id.toString().padStart(4, '0')}</td>
                     <td>{item.donatario.instituicao}</td>
                     <td>{item.donatario.nome_diretor}</td>
                     <td>{item.donatario.contato_diretor}</td>

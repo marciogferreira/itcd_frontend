@@ -3,7 +3,9 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup'
 import Api from "../../config/Api";
 import Message from "../../config/Message";
-export default function ImportacaoDados() {
+
+export default function ImportacaoDadosDoacoes() {
+    
     return (
         <ComponentCard desc="" title="" contentLeft={() => null}>
              <Formik
@@ -21,7 +23,7 @@ export default function ImportacaoDados() {
                 formData.append("file", values.file);
     
                 try {
-                    await Api.post("/importar-csv", formData);
+                    await Api.post("/importar-donatarios-csv", formData);
                     Message.success("Importação Realizada com Sucesso.");
                     resetForm();
                 } catch (error) {
@@ -38,7 +40,7 @@ export default function ImportacaoDados() {
                     encType="multipart/form-data"
                 >
                     <h2 className="text-xl font-bold mb-6 text-gray-800">
-                        Upload de Arquivo CSV - Recebimentos
+                        Upload de Arquivo CSV - Doações
                     </h2>
     
                     <div className="mb-4">

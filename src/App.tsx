@@ -29,15 +29,15 @@ import LoadingScreen from "./components/LoadingScreen";
 import DoadoresPages from "./pages/DoadoresPages";
 import DoacoesPages from "./pages/DoacoesPages";
 import DescartesPages from "./pages/DescartesPages";
-import FormElements from "./pages/Forms/FormElements";
 import DonatariosPages from "./pages/DoanatariosPages";
 import DonatariosLotesPages from "./pages/DonatariosLotesPages";
 import TiposEquipamentosPages from "./pages/TiposEquipamentosPages";
 import ImportacaoDados from "./pages/ImportacaoDados";
+import ImportacaoDadosDoacoes from "./pages/ImportacaoDadosDoacoes";
 
 export default function App() {
   
-  const { isLogged, loading } = useAuth()
+  const { isLogged, loading, user } = useAuth()
 
   if(!isLogged) {
      return (
@@ -60,12 +60,11 @@ export default function App() {
   );
   }
 
-  return (
-    <>
-      
-      <Router>
+  
+  if(user && user.role == 4) {
+     return (
+       <Router>
         {loading && <LoadingScreen />}
-        
         <ScrollToTop />
         <Routes>
 
@@ -73,53 +72,8 @@ export default function App() {
           <Route element={<AppLayout />}>
 
             <Route index path="/" element={<Home />} />
-
-            {/*M. de Capacitação */}
-
-            <Route path="/alunos" element={<AlunosPages />} />
-            <Route path="/cursos" element={<CursosPages />} />
-            <Route path="/turmas" element={<TurmasPages />} />
-            <Route path="/matriculas" element={<MatriculasPages />} />
-            <Route path="/eventos" element={<EventosPages />} />
-            <Route path="/usuarios" element={<UsuariosPages />} />
-
-            <Route path="/tipos-equipamentos" element={<TiposEquipamentosPages />} />
-            
-
-            {/*M. R. de Equipamentos*/}
-
-            <Route path="/doadores" element={<DoadoresPages />} />
-            <Route path="/recebimentos" element={<DoacoesPages />} />
-            
-            <Route path="/doacoes" element={<DonatariosPages />} />
-            <Route path="/doacoes-lotes" element={<DonatariosLotesPages />} />
-
-            <Route path="/descartes" element={<DescartesPages />} />
-
-            {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
-            <Route path="/importacoes" element={<ImportacaoDados />} />
-            
-            {/* <Route path="/calendar" element={<Calendar />} />
-            <Route path="/blank" element={<Blank />} /> */}
-
-            {/* Forms */}
-            {/* <Route path="/form-elements" element={<FormElements />} /> */}
-
-            {/* Tables */}
-            {/* <Route path="/basic-tables" element={<BasicTables />} /> */}
-
-            {/* Ui Elements */}
-            {/* <Route path="/alerts" element={<Alerts />} />
-            <Route path="/avatars" element={<Avatars />} />
-            <Route path="/badge" element={<Badges />} />
-            <Route path="/buttons" element={<Buttons />} />
-            <Route path="/images" element={<Images />} />
-            <Route path="/videos" element={<Videos />} /> */}
-
-            {/* Charts */}
-            {/* <Route path="/line-chart" element={<LineChart />} />
-            <Route path="/bar-chart" element={<BarChart />} /> */}
+            {/*M. de Capacitação */}
 
           </Route>
 
@@ -127,6 +81,81 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
-    </>
-  );
+     )
+  }
+
+  if(user && user.role == 1) {
+    return (
+      <>
+        
+        <Router>
+          {loading && <LoadingScreen />}
+          
+          <ScrollToTop />
+          <Routes>
+
+            {/* Dashboard Layout */}
+            <Route element={<AppLayout />}>
+
+              <Route index path="/" element={<Home />} />
+
+              {/*M. de Capacitação */}
+
+              <Route path="/alunos" element={<AlunosPages />} />
+              <Route path="/cursos" element={<CursosPages />} />
+              <Route path="/turmas" element={<TurmasPages />} />
+              <Route path="/matriculas" element={<MatriculasPages />} />
+              <Route path="/eventos" element={<EventosPages />} />
+              <Route path="/usuarios" element={<UsuariosPages />} />
+
+              <Route path="/tipos-equipamentos" element={<TiposEquipamentosPages />} />
+              
+
+              {/*M. R. de Equipamentos*/}
+
+              <Route path="/doadores" element={<DoadoresPages />} />
+              <Route path="/recebimentos" element={<DoacoesPages />} />
+              
+              <Route path="/doacoes" element={<DonatariosPages />} />
+              <Route path="/doacoes-lotes" element={<DonatariosLotesPages />} />
+
+              <Route path="/descartes" element={<DescartesPages />} />
+
+              {/* Others Page */}
+              <Route path="/profile" element={<UserProfiles />} />
+              <Route path="/importacoes" element={<ImportacaoDados />} />
+              <Route path="/importacoes-doacoes" element={<ImportacaoDadosDoacoes />} />
+              
+              {/* <Route path="/calendar" element={<Calendar />} />
+              <Route path="/blank" element={<Blank />} /> */}
+
+              {/* Forms */}
+              {/* <Route path="/form-elements" element={<FormElements />} /> */}
+
+              {/* Tables */}
+              {/* <Route path="/basic-tables" element={<BasicTables />} /> */}
+
+              {/* Ui Elements */}
+              {/* <Route path="/alerts" element={<Alerts />} />
+              <Route path="/avatars" element={<Avatars />} />
+              <Route path="/badge" element={<Badges />} />
+              <Route path="/buttons" element={<Buttons />} />
+              <Route path="/images" element={<Images />} />
+              <Route path="/videos" element={<Videos />} /> */}
+
+              {/* Charts */}
+              {/* <Route path="/line-chart" element={<LineChart />} />
+              <Route path="/bar-chart" element={<BarChart />} /> */}
+
+            </Route>
+
+            {/* Fallback Route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </>
+    );
+  }
+
+  return null;
 }

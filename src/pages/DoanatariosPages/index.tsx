@@ -172,14 +172,13 @@ export default function DonatariosPages() {
                 { name: 'nome_diretor', label: 'Nome do Diretor' },
                 { name: 'contato_diretor', label: 'Contato' },
             ]}
-           
             validation={(Yup: object | any) => {
                 return {
                     instituicao: Yup.string().required('Campo obrigatório'),
                     nome_diretor: Yup.string().required('Campo obrigatório'),
                     contato_diretor: Yup.string().required('Campo obrigatório')
                 };
-            } }
+            }}
             FormWrapper={FormWrapper} 
             columns={[]} 
             enableBtnNew={false} 

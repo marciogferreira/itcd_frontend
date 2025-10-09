@@ -77,7 +77,8 @@ const navItems: NavItem[] = [
     icon: <PageIcon />,
     subItems: [
       { name: "Descartes", path: "/descartes", pro: false },
-      { name: "Importações", path: "/importacoes", pro: false },
+      { name: "Importações Recebimentos", path: "/importacoes", pro: false },
+      { name: "Importações Doações", path: "/importacoes-doacoes", pro: false },
     ],
     
   },
@@ -436,7 +437,7 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots className="size-6" />
                 )}
               </h2>
-              {user && user.role == 2 && renderMenuItems(navItemsAlunos, "main")}
+              {user && user.role == 4 && renderMenuItems(navItemsAlunos, "main")}
               {user && user.role == 1 && renderMenuItems(navItems, "main")}
             </div>
             <div className="">

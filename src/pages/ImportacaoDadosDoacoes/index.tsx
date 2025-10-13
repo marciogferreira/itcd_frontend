@@ -89,7 +89,7 @@ export default function ImportacaoDadosDoacoes() {
                 </Formik>
 
                 <div className="p-3">
-                    <a className="text-blue-700" href="https://api.itcd.com.br/doacoes_csv.CSV" target="_blank">
+                    <a className="text-blue-700" href="https://api.itcd.org.br/modelos/doacoes_csv.CSV" target="_blank">
                         Baixar Modelo de Arquivo CSV
                     </a>
                 </div>

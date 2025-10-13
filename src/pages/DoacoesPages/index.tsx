@@ -194,7 +194,7 @@ const FormWrapper = ({ ErrorMessage, setFieldValue, values }: DataProps) => {
                                     <TableCell>{item.quantidade}</TableCell>
                                     <TableCell>{item.observacao}</TableCell>
                                     <TableCell>
-                                        <button onClick={() => handleDeleteItem(item.id)}>Excluir</button>
+                                        <button type='button' onClick={() => handleDeleteItem(item.id)}>Excluir</button>
                                     </TableCell>
                                 </TableRow>
                             ))}

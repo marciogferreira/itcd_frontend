@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-         stage('Deploy Docker Image') {
+        stage('Deploy Docker Image') {
             steps {
                 sh 'echo "Executando o comando Docker build"'
             }

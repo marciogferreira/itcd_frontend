@@ -80,6 +80,8 @@ export default function Crud(props: any) {
     }
 
     async function handleDelete(item: any) {
+        // await Api.delete(`${props.endPoint}/${item.id}`);
+        // loadData();
         await Message.confirmation("Deseja deletar este registro?", async () => {
             await Api.delete(`${props.endPoint}/${item.id}`);
             loadData();

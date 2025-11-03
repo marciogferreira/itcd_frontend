@@ -15,7 +15,7 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
         <>
             <div className='row'>
 
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-4 gap-4">
                     <div className="mb-3">
                             <Label>Tipo de Resíduo</Label>
                             <Input type="text" id="tipo_residuo" name="tipo_residuo" />
@@ -37,6 +37,14 @@ const FormWrapper = ({ ErrorMessage }: DataProps) => {
                             <Input type="text" id="origem" name="origem" />
                             <span className="error">
                                 <ErrorMessage name="origem" component="span" />
+                            </span>
+                        </div>
+
+                           <div className="mb-3">
+                            <Label>Data</Label>
+                            <Input type="date" id="data" name="data" />
+                            <span className="error">
+                                <ErrorMessage name="data" component="span" />
                             </span>
                         </div>
                 </div>
@@ -101,6 +109,7 @@ export default function DescartesPages() {
                 tipo_residuo: '',
                 peso_total: '',
                 origem: '',
+                data: '',
                 data_destinacao: '',
                 destinatario: '',
                 peso_descartado: '',
@@ -117,6 +126,7 @@ export default function DescartesPages() {
             validation={(Yup: object | any) => {
                 return {
                     tipo_residuo: Yup.string().required('Campo obrigatório'),
+                    data: Yup.string().required('Campo obrigatório'),
                 };
             } }
             FormWrapper={FormWrapper} 

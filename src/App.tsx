@@ -34,6 +34,7 @@ import DonatariosLotesPages from "./pages/DonatariosLotesPages";
 import TiposEquipamentosPages from "./pages/TiposEquipamentosPages";
 import ImportacaoDados from "./pages/ImportacaoDados";
 import ImportacaoDadosDoacoes from "./pages/ImportacaoDadosDoacoes";
+import RelatoriosPages from "./pages/RelaltoriosPages";
 
 export default function App() {
   
@@ -126,6 +127,7 @@ export default function App() {
               <Route path="/importacoes" element={<ImportacaoDados />} />
               <Route path="/importacoes-doacoes" element={<ImportacaoDadosDoacoes />} />
               
+              <Route path="/relatorios" element={<RelatoriosPages />} />
               {/* <Route path="/calendar" element={<Calendar />} />
               <Route path="/blank" element={<Blank />} /> */}
 

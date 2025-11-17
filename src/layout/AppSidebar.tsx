@@ -82,6 +82,11 @@ const navItems: NavItem[] = [
     ],
     
   },
+  {
+    icon: <PageIcon />,
+    name: "Relatórios",
+    path: "/relatorios",
+  },
 
   {
     icon: <UserIcon />,

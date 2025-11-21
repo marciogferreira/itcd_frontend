@@ -73,6 +73,14 @@ const FormWrapper = ({ ErrorMessage, values }: DataProps) => {
                             <ErrorMessage name="data" component="span" />
                         </span>
                     </div>
+
+                    <div className='mb-3'>
+                        <Label>Quantidade de CPUs</Label>
+                        <Input type="number" id="qtde_cpu" name="qtde_cpu" />
+                        <span className="error">
+                            <ErrorMessage name="qtde_cpu" component="span" />
+                        </span>
+                    </div>
                 </div>
 
                 <hr className='mt-6'/>
@@ -130,6 +138,7 @@ export default function DonatariosLotesPages() {
             emptyObject={{
                 donatario_id: '',
                 data: '',
+                qtde_cpu: 0
             }}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },

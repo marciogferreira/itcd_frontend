@@ -76,7 +76,7 @@ const FormWrapper = ({ ErrorMessage, setFieldValue, values }: DataProps) => {
                         </span>
                     </div>
 
-                      <div className='mb-3'>
+                    <div className='mb-3'>
                         <Label>Peso dos Equipamentos</Label>
                         <Input type="number" id="peso" name="peso" />
                         <span className="error">
@@ -89,6 +89,14 @@ const FormWrapper = ({ ErrorMessage, setFieldValue, values }: DataProps) => {
                         <Input type="number" disabled id="quantidade_equipamentos" name="quantidade_equipamentos" />
                         <span className="error">
                             <ErrorMessage name="quantidade_equipamentos" component="span" />
+                        </span>
+                    </div>
+
+                    <div className='mb-3'>
+                        <Label>Quantidade de CPUs</Label>
+                        <Input type="number" id="qtde_cpu" name="qtde_cpu" />
+                        <span className="error">
+                            <ErrorMessage name="qtde_cpu" component="span" />
                         </span>
                     </div>
 
@@ -238,7 +246,8 @@ export default function TurmasPages() {
                 observacoes_tecnicas: '',
 
                 status: '',
-                data_finalizacao: ''
+                data_finalizacao: '',
+                qtde_cpu: 0
             }}
             validation={(Yup: object | any) => {
                 return {

@@ -3,7 +3,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import Api from '../../config/Api';
 import SelectInputs from '../../components/form/form-elements/SelectInputs';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Input, { InputCustom } from '../../components/form/input/InputField';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import FormDoacoesItens from './FormDonatariosItens';
@@ -266,6 +266,29 @@ export default function TurmasPages() {
                 { name: 'quantidade_equipamentos', label: 'Qtde. Equi. Rejeitados.' },
                 { name: 'responsavel_recebimento', label: 'Responsável.' }
             ]}
+            FormSearch={({ params, setParams }: any) => (
+                <>
+                    <InputCustom
+                        placeholder='Filtrar por Nome do Doador' 
+                        type="text" id="nome" name="nome" 
+                        onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                    
+                    {/* <div className="flex gap-5">
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por CPF' 
+                            type="text" id="cpf" name="cpf" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por E-mail' 
+                            type="text" id="email" name="email" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                    </div> */}
+                </>
+            )}
             fieldsHtml={({ item }: any) => (
                 <>
                     <td>{item.id}</td>

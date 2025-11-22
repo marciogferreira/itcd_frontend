@@ -1,7 +1,7 @@
 import Crud from '../../components/Crud';
 import { ReactElement, useEffect, useState } from 'react';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Input, { InputCustom } from '../../components/form/input/InputField';
 import {
   Table,
   TableBody,
@@ -140,6 +140,24 @@ export default function DonatariosLotesPages() {
                 data: '',
                 qtde_cpu: 0
             }}
+            FormSearch={({ params, setParams }: any) => (
+                <>
+                    <InputCustom
+                        placeholder='Filtrar por Nome da Instituição' 
+                        type="text" id="nome" name="nome" 
+                        onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                    
+                    <div className="flex gap-5">
+                        <div className='w-[50%]'>
+                            <InputCustom 
+                            placeholder='Filtrar por Lote' 
+                            type="text" id="numero_lote" name="numero_lote" 
+                            onChange={e => setParams({...params, [e.target.name]: e.target.value })}  />
+                        </div>
+                       
+                    </div>
+                </>
+            )}
             fields={[
                 { name: 'id', label: 'Id', classBody: 'min-width' },
                 { name: 'numero_lote', label: 'Nº Lote' },

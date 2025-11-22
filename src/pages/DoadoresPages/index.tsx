@@ -1,7 +1,7 @@
 import Crud from '../../components/Crud';
 import { ReactElement } from 'react';
 import Label from '../../components/form/Label';
-import Input from '../../components/form/input/InputField';
+import Input, { InputCustom } from '../../components/form/input/InputField';
 
 type DataProps = {
   Field: ReactElement | any;
@@ -75,7 +75,7 @@ export default function CursosPages() {
                 { name: 'responsavel', label: 'Responsável' },
                 { name: 'email', label: 'E-mail' }
             ]}
-           
+            
             validation={(Yup: object | any) => {
                 return {
                     nome: Yup.string().required('Campo obrigatório'),

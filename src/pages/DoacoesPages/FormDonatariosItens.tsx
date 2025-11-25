@@ -6,6 +6,7 @@ import Api from "../../config/Api";
 import Message from "../../config/Message";
 import { useOptions } from "../../hooks/useApi";
 import SelectInputs from "../../components/form/form-elements/SelectInputs";
+import * as Yup from 'yup'
 
 type DataDoacoesItens = {
     doacao_id: number;
@@ -31,6 +32,12 @@ export default function FormDoacoesItens({ doacao_id, loadData }: any) {
         }
     }
 
+
+    const validacaoSchema = Yup.object().shape({
+        equipamento: Yup.string().required('Campo obrigatório'),
+        quantidade: Yup.string().required('Campo obrigatório'),
+    });
+
     return (
         <>
             <Formik
@@ -40,6 +47,7 @@ export default function FormDoacoesItens({ doacao_id, loadData }: any) {
                     quantidade: '',
                     observacao: ''
                 }}
+                validationSchema={validacaoSchema}
                 onSubmit={(values: DataDoacoesItens, form: any) => {
                     handleSave(values, form);
                 }}

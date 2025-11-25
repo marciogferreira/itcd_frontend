@@ -4,6 +4,7 @@ import Input from "../../components/form/input/InputField";
 import { Button } from "react-bootstrap";
 import Api from "../../config/Api";
 import Message from "../../config/Message";
+import * as Yup from 'yup'
 
 type DataDonatarioItens = {
     donatario_id: number;
@@ -27,6 +28,11 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
         }
     }
 
+    const validacaoSchema = Yup.object().shape({
+           equipamento: Yup.string().required('Campo obrigatório'),
+           quantidade: Yup.string().required('Campo obrigatório'),
+       });
+
     return (
         <>
             <Formik
@@ -36,6 +42,7 @@ export default function FormDonatariosItens({ donatario_id, loadData }: any) {
                     quantidade: '',
                     observacao: ''
                 }}
+                validationSchema={validacaoSchema}
                 onSubmit={(values: DataDonatarioItens, form: any) => {
                     handleSave(values, form);
                 }}
